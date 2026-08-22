@@ -1,7 +1,8 @@
 
 # EMERIONA Global
 
-Official website of EMERIONA Global — a global impact ecosystem focused on empowering people, ideas, and innovation through leadership, technology, and development.
+Official website of EMERIONA Global — a globa
+EMERIONA is a global impact ecosystem empowering people, ideas, and innovation to create sustainable change through leadership,technology,and development
 
 ## Vision
 

@@ -1,1526 +1,774 @@
-:root {
-  --bg: #07111f;
-  --bg-soft: #0b192a;
-  --surface: #10243a;
-  --surface-light: #f6f8fb;
-  --white: #ffffff;
-
-  --text: #f5f7fa;
-  --text-dark: #142235;
-  --muted: #aebdce;
-  --muted-dark: #647387;
-
-  --accent: #d7b56d;
-  --accent-light: #f0d99b;
-  --accent-dark: #b99650;
-
-  --border: rgba(255, 255, 255, 0.12);
-  --dark-border: rgba(20, 34, 53, 0.12);
-
-  --max-width: 1180px;
-  --header-height: 78px;
-
-  --shadow-soft: 0 18px 50px rgba(7, 17, 31, 0.08);
-  --shadow-dark: 0 25px 70px rgba(0, 0, 0, 0.25);
-
-  --transition: 0.3s ease;
-}
-
-
-/* =========================
-   RESET
-========================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--header-height);
-}
-
-body {
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
-  background: var(--surface-light);
-  color: var(--text-dark);
-  line-height: 1.7;
-
-  overflow-x: hidden;
-}
-
-body.menu-open {
-  overflow: hidden;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  border: 0;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-::selection {
-  background: var(--accent);
-  color: var(--bg);
-}
-
-
-/* =========================
-   GLOBAL
-========================= */
-
-.container {
-  width: min(100% - 40px, var(--max-width));
-  margin: 0 auto;
-}
-
-.eyebrow {
-  display: inline-block;
-
-  color: var(--accent);
-
-  font-size: 0.76rem;
-  font-weight: 800;
-
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-
-  margin-bottom: 18px;
-}
-
-.section {
-  padding: 120px 0;
-  background: var(--surface-light);
-}
-
-.section-heading {
-  max-width: 850px;
-  margin-bottom: 60px;
-}
-
-.section-heading h2 {
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
-}
-
-.section-intro {
-  max-width: 720px;
-
-  margin-top: 25px;
-
-  color: var(--muted);
-  font-size: 1.08rem;
-}
-
-.dark-intro {
-  color: var(--muted-dark);
-}
-
-.center-heading {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.center-text {
-  max-width: 760px;
-
-  margin: 0 auto 35px;
-
-  text-align: center;
-
-  color: var(--muted-dark);
-  font-size: 1.08rem;
-}
-
-.center-action {
-  display: flex;
-  justify-content: center;
-}
-
-
-/* =========================
-   HEADER
-========================= */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-
-  height: var(--header-height);
-
-  background: rgba(7, 17, 31, 0.92);
-
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  border-bottom: 1px solid var(--border);
-
-  transition:
-    background var(--transition),
-    box-shadow var(--transition);
-}
-
-.site-header.scrolled {
-  background: rgba(7, 17, 31, 0.98);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
-}
-
-.nav-container {
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 30px;
-}
-
-.logo {
-  flex-shrink: 0;
-
-  font-size: 1.35rem;
-  font-weight: 900;
-
-  letter-spacing: 0.17em;
-
-  color: var(--white);
-}
-
-.logo span {
-  color: var(--accent);
-
-  font-size: 0.55rem;
-
-  vertical-align: top;
-
-  margin-left: 3px;
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-
-  gap: 25px;
-}
-
-.main-nav a {
-  position: relative;
-
-  color: var(--muted);
-
-  font-size: 0.82rem;
-  font-weight: 600;
-
-  transition:
-    color var(--transition);
-}
-
-.main-nav a::after {
-  content: "";
-
-  position: absolute;
-
-  left: 0;
-  bottom: -8px;
-
-  width: 0;
-  height: 1px;
-
-  background: var(--accent);
-
-  transition: width var(--transition);
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-  color: var(--white);
-}
-
-.main-nav a:hover::after,
-.main-nav a.active::after {
-  width: 100%;
-}
-
-
-/* =========================
-   MOBILE MENU BUTTON
-========================= */
-
-.menu-toggle {
-  display: none;
-
-  width: 42px;
-  height: 42px;
-
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  gap: 5px;
-
-  background: transparent;
-
-  cursor: pointer;
-}
-
-.menu-toggle span {
-  display: block;
-
-  width: 23px;
-  height: 2px;
-
-  background: var(--white);
-
-  transition:
-    transform var(--transition),
-    opacity var(--transition);
-}
-
-.menu-toggle.active span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-  min-height: calc(100vh - var(--header-height));
-  min-height: 720px;
-
-  position: relative;
-
-  display: flex;
-  align-items: center;
-
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 78% 28%,
-      rgba(215, 181, 109, 0.16),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(40, 92, 130, 0.14),
-      transparent 32%
-    ),
-    linear-gradient(
-      135deg,
-      #07111f 0%,
-      #0b192a 52%,
-      #10243a 100%
+(() => {
+  "use strict";
+
+  /* =========================
+     EMERIONA GLOBAL
+     Main Website Script
+     ========================= */
+
+  const html = document.documentElement;
+  const body = document.body;
+
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mainNav = document.querySelector("#main-nav");
+  const langToggle = document.querySelector(".lang-toggle");
+  const contactForm = document.querySelector("#contact-form");
+  const yearElement = document.querySelector("#year");
+
+  /* =========================
+     Translations
+     ========================= */
+
+  const translations = {
+    en: {
+      "nav.about": "About",
+      "nav.ecosystem": "Ecosystem",
+      "nav.solutions": "Solutions",
+      "nav.products": "Products",
+      "nav.services": "Services",
+      "nav.innovation": "Innovation",
+      "nav.knowledge": "Knowledge",
+      "nav.impact": "Impact",
+      "nav.partnerships": "Partnerships",
+      "nav.contact": "Contact",
+
+      "hero.eyebrow": "EMERIONA GLOBAL",
+      "hero.line1": "Empowering People.",
+      "hero.line2": "Elevating Ideas.",
+      "hero.line3": "Creating Impact.",
+      "hero.description":
+        "EMERIONA is a global impact ecosystem empowering people, ideas, and innovation to create sustainable change through leadership, technology, and development.",
+      "hero.support":
+        "Empowering Humanity Through Technology & Innovation",
+      "hero.explore": "Explore EMERIONA",
+      "hero.build": "Build With Us",
+
+      "foundation.eyebrow": "OUR FOUNDATION",
+      "foundation.title": "Empowerment • Elevation • Impact",
+
+      "foundation.empowerment.title": "Empowerment",
+      "foundation.empowerment.text":
+        "Creating opportunities that enable people and ideas to move forward.",
+
+      "foundation.elevation.title": "Elevation",
+      "foundation.elevation.text":
+        "Elevating leadership, knowledge, innovation, and human potential.",
+
+      "foundation.impact.title": "Impact",
+      "foundation.impact.text":
+        "Turning knowledge, technology, and innovation into meaningful change.",
+
+      "about.eyebrow": "ABOUT EMERIONA",
+      "about.title": "A Global Ecosystem Built Around Possibility",
+      "about.p1":
+        "EMERIONA is a global impact ecosystem empowering people, ideas, and innovation to create sustainable change through leadership, technology, and development.",
+      "about.p2":
+        "We bring together people, knowledge, technology, innovation, and opportunities to transform possibilities into practical outcomes.",
+      "about.p3":
+        "Built for the long term, EMERIONA is designed as an adaptable ecosystem capable of developing products and services, launching platforms and initiatives, entering new fields, and creating new ventures as opportunities emerge.",
+
+      "ecosystem.eyebrow": "THE ECOSYSTEM",
+      "ecosystem.title": "One Ecosystem. Many Possibilities.",
+      "ecosystem.subtitle":
+        "These domains are foundations — not boundaries.",
+
+      "pillars.leadership.title": "Leadership",
+      "pillars.leadership.text":
+        "Developing leadership, capability, vision, and responsible action.",
+
+      "pillars.humanity.title": "Humanity",
+      "pillars.humanity.text":
+        "Supporting human potential, inclusion, resilience, and opportunity.",
+
+      "pillars.development.title": "Development",
+      "pillars.development.text":
+        "Creating practical approaches that contribute to sustainable progress.",
+
+      "pillars.culture.title": "Culture",
+      "pillars.culture.text":
+        "Connecting knowledge, creativity, identity, and human expression.",
+
+      "pillars.science.title": "Science",
+      "pillars.science.text":
+        "Exploring knowledge, research, evidence, and new possibilities.",
+
+      "pillars.technology.title": "Technology",
+      "pillars.technology.text":
+        "Using digital systems and AI to accelerate innovation and impact.",
+
+      "solutions.eyebrow": "SOLUTIONS",
+      "solutions.title": "Built Around Real Needs",
+      "solutions.subtitle":
+        "We explore the challenge, understand the opportunity, and develop the most appropriate product, service, technology, or solution.",
+
+      "solutions.digitalProducts.title": "Digital Products",
+      "solutions.digitalProducts.text":
+        "Products designed around real needs and meaningful user experiences.",
+
+      "solutions.digitalServices.title": "Digital Services",
+      "solutions.digitalServices.text":
+        "Practical services helping individuals and organizations operate, grow, and move forward.",
+
+      "solutions.tech.title": "Technology & Innovation",
+      "solutions.tech.text":
+        "Technology-driven solutions that transform ideas into useful outcomes.",
+
+      "solutions.ai.title": "AI & Intelligent Solutions",
+      "solutions.ai.text":
+        "AI-powered systems developed with responsible human oversight.",
+
+      "solutions.platforms.title": "Digital Platforms",
+      "solutions.platforms.text":
+        "Platforms connecting people, services, knowledge, opportunities, and experiences.",
+
+      "solutions.knowledge.title": "Knowledge Solutions",
+      "solutions.knowledge.text":
+        "Research, content, learning, insights, and knowledge-based products.",
+
+      "products.eyebrow": "PRODUCTS",
+      "products.title": "Ideas Become Products",
+      "products.p1":
+        "EMERIONA develops digital products, platforms, knowledge products, and future ventures designed around real needs and opportunities.",
+      "products.p2":
+        "Our product portfolio will evolve with the ecosystem — from digital experiences and intelligent tools to platforms and scalable ventures.",
+      "products.cta": "Discuss a product opportunity →",
+
+      "services.eyebrow": "SERVICES",
+      "services.title": "Capabilities That Create Value",
+      "services.subtitle":
+        "Services can be delivered independently or combined into tailored solutions around a specific need, project, or opportunity.",
+
+      "services.strategy.title": "Strategy & Development",
+      "services.strategy.text":
+        "Strategic thinking, development support, and opportunity design.",
+
+      "services.digital.title": "Digital & Technology",
+      "services.digital.text":
+        "Digital solutions, technology enablement, and intelligent systems.",
+
+      "services.knowledge.title": "Knowledge & Research",
+      "services.knowledge.text":
+        "Research, analysis, content, learning, and knowledge development.",
+
+      "services.custom.title": "Custom Solutions",
+      "services.custom.text":
+        "Purpose-built solutions shaped around organizational or market requirements.",
+
+      "innovation.eyebrow": "INNOVATION",
+      "innovation.title":
+        "Empowering Humanity Through Technology & Innovation",
+      "innovation.p1":
+        "Innovation at EMERIONA is not limited to technology. It is the continuous process of discovering better ways to solve problems, create value, improve experiences, and open new possibilities.",
+      "innovation.p2":
+        "We explore emerging technologies, AI, new business models, digital experiences, research, creative thinking, and ideas capable of becoming meaningful products, services, initiatives, or ventures.",
+
+      "knowledge.eyebrow": "EMERIONA KNOWLEDGE",
+      "knowledge.title": "Knowledge That Moves Forward",
+      "knowledge.subtitle":
+        "An evolving knowledge environment connecting ideas, research, insights, experience, and innovation.",
+
+      "knowledge.insights.title": "Insights",
+      "knowledge.insights.text":
+        "Emerging ideas, trends, and opportunities.",
+
+      "knowledge.articles.title": "Articles",
+      "knowledge.articles.text":
+        "Leadership, technology, development, culture, and innovation.",
+
+      "knowledge.research.title": "Research",
+      "knowledge.research.text":
+        "Evidence exploring important questions and possibilities.",
+
+      "knowledge.reports.title": "Reports",
+      "knowledge.reports.text":
+        "Structured analysis, findings, and knowledge resources.",
+
+      "knowledge.publications.title": "Publications",
+      "knowledge.publications.text":
+        "Original EMERIONA knowledge products.",
+
+      "knowledge.perspectives.title": "Perspectives",
+      "knowledge.perspectives.text":
+        "Ideas and viewpoints shaping the ecosystem.",
+
+      "impact.eyebrow": "IMPACT INTELLIGENCE",
+      "impact.title": "From Activity to Meaningful Change",
+      "impact.p1":
+        "Impact is at the heart of the EMERIONA philosophy. We seek to understand not only what we create, but why it matters, who it serves, what changes, and how that change can be measured and improved.",
+      "impact.p2":
+        "Over time, EMERIONA will develop its own impact intelligence capabilities to connect data, evidence, insights, and decision-making.",
+
+      "factory.eyebrow": "EMERIONA DIGITAL FACTORY",
+      "factory.title": "From Idea to Reality",
+      "factory.subtitle":
+        "Our long-term approach to turning ideas into real-world products, services, and ventures.",
+
+      "factory.discover": "Discover",
+      "factory.research": "Research",
+      "factory.validate": "Validate",
+      "factory.design": "Design",
+      "factory.build": "Build",
+      "factory.test": "Test",
+      "factory.launch": "Launch",
+      "factory.grow": "Grow",
+      "factory.measure": "Measure",
+      "factory.improve": "Improve",
+
+      "factory.note":
+        "AI, automation, data, and intelligent systems can support the journey where appropriate — while strategic direction, governance, quality, and final accountability remain human-led.",
+
+      "partnerships.eyebrow": "PARTNERSHIPS & OPPORTUNITIES",
+      "partnerships.title": "Build With Us",
+      "partnerships.p1":
+        "The future is built through meaningful collaboration.",
+      "partnerships.p2":
+        "We welcome organizations, businesses, institutions, entrepreneurs, innovators, researchers, creators, strategic partners, and communities.",
+      "partnerships.p3":
+        "Whether the opportunity involves a product, service, technology, research, project, investment, partnership, or new idea — we are open to exploring what can be built together.",
+      "partnerships.cta": "Start a conversation →",
+
+      "contact.eyebrow": "CONNECT WITH EMERIONA",
+      "contact.title": "Let's Start a Conversation",
+      "contact.subtitle":
+        "Have an idea, need, challenge, project, product or service request, partnership opportunity, or simply want to learn more?",
+
+      "contact.email.label": "Email",
+      "contact.email.cta": "Email EMERIONA →",
+
+      "contact.whatsapp.label": "WhatsApp",
+      "contact.whatsapp.cta": "WhatsApp EMERIONA →",
+
+      "form.name": "Full Name",
+      "form.email": "Email",
+      "form.organization": "Organization / Company",
+      "form.purpose": "Purpose",
+      "form.message": "Message",
+      "form.send": "Prepare Email",
+      "form.note":
+        "Your email app will open with the message prepared for EMERIONA. For instant contact, use WhatsApp above.",
+
+      "footer.description":
+        "Empowering People. Elevating Ideas. Creating Impact.",
+      "footer.explore": "Explore",
+      "footer.connect": "Connect",
+      "footer.rights": "All rights reserved.",
+      "footer.values": "Empowerment • Elevation • Impact"
+    },
+
+    ar: {
+      "nav.about": "عن إميريونا",
+      "nav.ecosystem": "المنظومة",
+      "nav.solutions": "الحلول",
+      "nav.products": "المنتجات",
+      "nav.services": "الخدمات",
+      "nav.innovation": "الابتكار",
+      "nav.knowledge": "المعرفة",
+      "nav.impact": "الأثر",
+      "nav.partnerships": "الشراكات",
+      "nav.contact": "تواصل معنا",
+
+      "hero.eyebrow": "إميريونا العالمية",
+      "hero.line1": "تمكين الإنسان.",
+      "hero.line2": "الارتقاء بالأفكار.",
+      "hero.line3": "صناعة الأثر.",
+      "hero.description":
+        "إميريونا منظومة عالمية لصناعة الأثر، تعمل على تمكين الإنسان والأفكار والابتكار لصناعة تغيير مستدام من خلال القيادة والتكنولوجيا والتنمية.",
+      "hero.support":
+        "تمكين الإنسان من خلال التكنولوجيا والابتكار",
+      "hero.explore": "اكتشف إميريونا",
+      "hero.build": "ابنِ معنا",
+
+      "foundation.eyebrow": "أساسنا",
+      "foundation.title": "تمكين • ارتقاء • أثر",
+
+      "foundation.empowerment.title": "التمكين",
+      "foundation.empowerment.text":
+        "نصنع الفرص التي تمكّن الإنسان والأفكار من التقدم وصناعة المستقبل.",
+
+      "foundation.elevation.title": "الارتقاء",
+      "foundation.elevation.text":
+        "نرتقي بالقيادة والمعرفة والابتكار والإمكانات الإنسانية.",
+
+      "foundation.impact.title": "الأثر",
+      "foundation.impact.text":
+        "نحوّل المعرفة والتكنولوجيا والابتكار إلى تغيير حقيقي ذي معنى.",
+
+      "about.eyebrow": "عن إميريونا",
+      "about.title": "منظومة عالمية تُبنى حول الإمكانات",
+      "about.p1":
+        "إميريونا منظومة عالمية لصناعة الأثر، تعمل على تمكين الإنسان والأفكار والابتكار لصناعة تغيير مستدام من خلال القيادة والتكنولوجيا والتنمية.",
+      "about.p2":
+        "نجمع الإنسان والمعرفة والتكنولوجيا والابتكار والفرص لتحويل الإمكانات إلى نتائج عملية ملموسة.",
+      "about.p3":
+        "صُممت إميريونا على المدى الطويل كمنظومة مرنة وقابلة للتوسع، قادرة على تطوير المنتجات والخدمات، وإطلاق المنصات والمبادرات، ودخول مجالات جديدة، وإنشاء مشاريع ومشروعات جديدة مع ظهور الفرص.",
+
+      "ecosystem.eyebrow": "المنظومة",
+      "ecosystem.title": "منظومة واحدة. إمكانات متعددة.",
+      "ecosystem.subtitle":
+        "هذه المجالات تمثل ركائز للمنظومة — وليست حدودًا لها.",
+
+      "pillars.leadership.title": "القيادة",
+      "pillars.leadership.text":
+        "تطوير القيادة والقدرات والرؤية والعمل المسؤول.",
+
+      "pillars.humanity.title": "الإنسانية",
+      "pillars.humanity.text":
+        "دعم الإمكانات الإنسانية والشمول والمرونة والفرص.",
+
+      "pillars.development.title": "التنمية",
+      "pillars.development.text":
+        "ابتكار أساليب عملية تسهم في تحقيق تقدم مستدام.",
+
+      "pillars.culture.title": "الثقافة",
+      "pillars.culture.text":
+        "ربط المعرفة والإبداع والهوية والتعبير الإنساني.",
+
+      "pillars.science.title": "العلوم",
+      "pillars.science.text":
+        "استكشاف المعرفة والبحث والأدلة والإمكانات الجديدة.",
+
+      "pillars.technology.title": "التكنولوجيا",
+      "pillars.technology.text":
+        "استخدام الأنظمة الرقمية والذكاء الاصطناعي لتسريع الابتكار وصناعة الأثر.",
+
+      "solutions.eyebrow": "الحلول",
+      "solutions.title": "حلول تُبنى حول الاحتياجات الحقيقية",
+      "solutions.subtitle":
+        "نستكشف التحدي، ونفهم الفرصة، ثم نطوّر المنتج أو الخدمة أو التكنولوجيا أو الحل الأنسب.",
+
+      "solutions.digitalProducts.title": "المنتجات الرقمية",
+      "solutions.digitalProducts.text":
+        "منتجات تُصمم حول الاحتياجات الحقيقية وتجارب المستخدم ذات المعنى.",
+
+      "solutions.digitalServices.title": "الخدمات الرقمية",
+      "solutions.digitalServices.text":
+        "خدمات عملية تساعد الأفراد والمؤسسات على العمل والنمو والتقدم.",
+
+      "solutions.tech.title": "التكنولوجيا والابتكار",
+      "solutions.tech.text":
+        "حلول قائمة على التكنولوجيا تحوّل الأفكار إلى نتائج مفيدة.",
+
+      "solutions.ai.title": "الذكاء الاصطناعي والحلول الذكية",
+      "solutions.ai.text":
+        "أنظمة مدعومة بالذكاء الاصطناعي مع إشراف بشري مسؤول.",
+
+      "solutions.platforms.title": "المنصات الرقمية",
+      "solutions.platforms.text":
+        "منصات تربط الأشخاص والخدمات والمعرفة والفرص والتجارب.",
+
+      "solutions.knowledge.title": "حلول المعرفة",
+      "solutions.knowledge.text":
+        "البحث والمحتوى والتعلم والرؤى والمنتجات القائمة على المعرفة.",
+
+      "products.eyebrow": "المنتجات",
+      "products.title": "الأفكار تتحول إلى منتجات",
+      "products.p1":
+        "تطوّر إميريونا المنتجات الرقمية والمنصات ومنتجات المعرفة والمشاريع المستقبلية المصممة حول الاحتياجات والفرص الحقيقية.",
+      "products.p2":
+        "سيتطور portfolio المنتجات لدينا مع تطور المنظومة، من التجارب الرقمية والأدوات الذكية إلى المنصات والمشاريع القابلة للتوسع.",
+      "products.cta": "ناقش فرصة منتج ←",
+
+      "services.eyebrow": "الخدمات",
+      "services.title": "قدرات تصنع القيمة",
+      "services.subtitle":
+        "يمكن تقديم الخدمات بشكل مستقل أو دمجها في حلول مخصصة حول احتياج أو مشروع أو فرصة محددة.",
+
+      "services.strategy.title": "الاستراتيجية والتطوير",
+      "services.strategy.text":
+        "التفكير الاستراتيجي ودعم التطوير وتصميم الفرص.",
+
+      "services.digital.title": "التكنولوجيا والحلول الرقمية",
+      "services.digital.text":
+        "الحلول الرقمية وتمكين التكنولوجيا والأنظمة الذكية.",
+
+      "services.knowledge.title": "المعرفة والبحث",
+      "services.knowledge.text":
+        "البحث والتحليل والمحتوى والتعلم وتطوير المعرفة.",
+
+      "services.custom.title": "الحلول المخصصة",
+      "services.custom.text":
+        "حلول مصممة خصيصًا وفق متطلبات المؤسسات أو الأسواق.",
+
+      "innovation.eyebrow": "الابتكار",
+      "innovation.title":
+        "تمكين الإنسان من خلال التكنولوجيا والابتكار",
+      "innovation.p1":
+        "الابتكار في إميريونا لا يقتصر على التكنولوجيا، بل هو عملية مستمرة لاكتشاف طرق أفضل لحل المشكلات وصناعة القيمة وتحسين التجارب وفتح آفاق جديدة.",
+      "innovation.p2":
+        "نستكشف التقنيات الناشئة والذكاء الاصطناعي ونماذج الأعمال الجديدة والتجارب الرقمية والبحث والتفكير الإبداعي والأفكار القابلة للتحول إلى منتجات أو خدمات أو مبادرات أو مشاريع ذات معنى.",
+
+      "knowledge.eyebrow": "معرفة إميريونا",
+      "knowledge.title": "معرفة تدفع إلى الأمام",
+      "knowledge.subtitle":
+        "بيئة معرفية متطورة تربط الأفكار والبحث والرؤى والخبرات والابتكار.",
+
+      "knowledge.insights.title": "الرؤى",
+      "knowledge.insights.text":
+        "الأفكار والاتجاهات والفرص الناشئة.",
+
+      "knowledge.articles.title": "المقالات",
+      "knowledge.articles.text":
+        "القيادة والتكنولوجيا والتنمية والثقافة والابتكار.",
+
+      "knowledge.research.title": "البحث",
+      "knowledge.research.text":
+        "أدلة واستكشافات تتناول الأسئلة والإمكانات المهمة.",
+
+      "knowledge.reports.title": "التقارير",
+      "knowledge.reports.text":
+        "تحليلات ونتائج وموارد معرفية منظمة.",
+
+      "knowledge.publications.title": "الإصدارات",
+      "knowledge.publications.text":
+        "منتجات معرفية أصلية من إميريونا.",
+
+      "knowledge.perspectives.title": "وجهات النظر",
+      "knowledge.perspectives.text":
+        "أفكار ورؤى تسهم في تشكيل المنظومة.",
+
+      "impact.eyebrow": "ذكاء الأثر",
+      "impact.title": "من النشاط إلى التغيير ذي المعنى",
+      "impact.p1":
+        "الأثر في صميم فلسفة إميريونا. لا نسعى فقط إلى معرفة ما نصنعه، بل لماذا يهم، ومن يخدم، وما الذي يتغير، وكيف يمكن قياس هذا التغيير وتحسينه.",
+      "impact.p2":
+        "ومع مرور الوقت، ستطوّر إميريونا قدراتها الخاصة في ذكاء الأثر لربط البيانات والأدلة والرؤى وصنع القرار.",
+
+      "factory.eyebrow": "مصنع إميريونا الرقمي",
+      "factory.title": "من الفكرة إلى الواقع",
+      "factory.subtitle":
+        "منهجنا طويل المدى لتحويل الأفكار إلى منتجات وخدمات ومشاريع حقيقية.",
+
+      "factory.discover": "اكتشاف",
+      "factory.research": "بحث",
+      "factory.validate": "تحقق",
+      "factory.design": "تصميم",
+      "factory.build": "بناء",
+      "factory.test": "اختبار",
+      "factory.launch": "إطلاق",
+      "factory.grow": "نمو",
+      "factory.measure": "قياس",
+      "factory.improve": "تحسين",
+
+      "factory.note":
+        "يمكن للذكاء الاصطناعي والأتمتة والبيانات والأنظمة الذكية دعم الرحلة حيثما كان ذلك مناسبًا، مع بقاء التوجيه الاستراتيجي والحوكمة والجودة والمسؤولية النهائية بقيادة بشرية.",
+
+      "partnerships.eyebrow": "الشراكات والفرص",
+      "partnerships.title": "ابنِ معنا",
+      "partnerships.p1":
+        "المستقبل يُبنى من خلال التعاون الهادف.",
+      "partnerships.p2":
+        "نرحب بالمؤسسات والشركات والجهات ورواد الأعمال والمبتكرين والباحثين والمبدعين والشركاء الاستراتيجيين والمجتمعات.",
+      "partnerships.p3":
+        "سواء كانت الفرصة تتعلق بمنتج أو خدمة أو تكنولوجيا أو بحث أو مشروع أو استثمار أو شراكة أو فكرة جديدة، فنحن منفتحون لاستكشاف ما يمكن بناؤه معًا.",
+      "partnerships.cta": "ابدأ حوارًا ←",
+
+      "contact.eyebrow": "تواصل مع إميريونا",
+      "contact.title": "لنبدأ حوارًا",
+      "contact.subtitle":
+        "لديك فكرة أو احتياج أو تحدٍ أو مشروع أو طلب منتج أو خدمة أو فرصة شراكة، أو ترغب ببساطة في معرفة المزيد؟",
+
+      "contact.email.label": "البريد الإلكتروني",
+      "contact.email.cta": "راسل إميريونا ←",
+
+      "contact.whatsapp.label": "واتساب",
+      "contact.whatsapp.cta": "تواصل مع إميريونا عبر واتساب ←",
+
+      "form.name": "الاسم الكامل",
+      "form.email": "البريد الإلكتروني",
+      "form.organization": "المؤسسة / الشركة",
+      "form.purpose": "الغرض",
+      "form.message": "الرسالة",
+      "form.send": "تجهيز البريد الإلكتروني",
+      "form.note":
+        "سيتم فتح تطبيق البريد الإلكتروني لديك مع تجهيز الرسالة لإرسالها إلى إميريونا. للتواصل الفوري، استخدم واتساب أعلاه.",
+
+      "footer.description":
+        "تمكين الإنسان. الارتقاء بالأفكار. صناعة الأثر.",
+      "footer.explore": "استكشف",
+      "footer.connect": "تواصل",
+      "footer.rights": "جميع الحقوق محفوظة.",
+      "footer.values": "تمكين • ارتقاء • أثر"
+    }
+  };
+
+  /* =========================
+     Language
+     ========================= */
+
+  function getSavedLanguage() {
+    try {
+      const saved = localStorage.getItem("emeriona-language");
+
+      if (saved === "ar" || saved === "en") {
+        return saved;
+      }
+    } catch (error) {
+      // Ignore storage errors.
+    }
+
+    return "en";
+  }
+
+  function setLanguage(language) {
+    const lang = language === "ar" ? "ar" : "en";
+    const dictionary = translations[lang];
+
+    html.lang = lang;
+    html.dir = lang === "ar" ? "rtl" : "ltr";
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+      const key = element.getAttribute("data-i18n");
+
+      if (dictionary[key] !== undefined) {
+        element.textContent = dictionary[key];
+      }
+    });
+
+    if (langToggle) {
+      langToggle.textContent = lang === "en" ? "العربية" : "English";
+      langToggle.setAttribute(
+        "aria-label",
+        lang === "en" ? "Switch to Arabic" : "Switch to English"
+      );
+    }
+
+    document.title =
+      lang === "en"
+        ? "EMERIONA Global"
+        : "إميريونا العالمية";
+
+    try {
+      localStorage.setItem("emeriona-language", lang);
+    } catch (error) {
+      // Ignore storage errors.
+    }
+
+    updateFormPurposeOptions(lang);
+  }
+
+  function updateFormPurposeOptions(language) {
+    const select = document.querySelector(
+      '#contact-form select[name="purpose"]'
     );
 
-  color: var(--text);
-}
+    if (!select) {
+      return;
+    }
 
-.hero::before {
-  content: "";
+    const values = {
+      en: [
+        "General Inquiry",
+        "Product",
+        "Service",
+        "Partnership",
+        "Project",
+        "Collaboration",
+        "Media",
+        "Other"
+      ],
+      ar: [
+        "استفسار عام",
+        "منتج",
+        "خدمة",
+        "شراكة",
+        "مشروع",
+        "تعاون",
+        "إعلام",
+        "أخرى"
+      ]
+    };
 
-  position: absolute;
+    const currentValue = select.value;
+    const options = values[language];
 
-  inset: 0;
+    select.innerHTML = "";
 
-  background:
-    linear-gradient(
-      90deg,
-      rgba(7, 17, 31, 0.95),
-      rgba(7, 17, 31, 0.35)
+    options.forEach((value) => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = value;
+      select.appendChild(option);
+    });
+
+    if (options.includes(currentValue)) {
+      select.value = currentValue;
+    }
+  }
+
+  if (langToggle) {
+    langToggle.addEventListener("click", () => {
+      const nextLanguage =
+        html.lang === "ar" ? "en" : "ar";
+
+      setLanguage(nextLanguage);
+    });
+  }
+
+  /* =========================
+     Mobile Navigation
+     ========================= */
+
+  function closeMenu() {
+    if (!menuToggle || !mainNav) {
+      return;
+    }
+
+    mainNav.classList.remove("is-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+    body.classList.remove("menu-open");
+  }
+
+  function openMenu() {
+    if (!menuToggle || !mainNav) {
+      return;
+    }
+
+    mainNav.classList.add("is-open");
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Close navigation");
+    body.classList.add("menu-open");
+  }
+
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen =
+        mainNav.classList.contains("is-open");
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        mainNav.classList.contains("is-open") &&
+        !mainNav.contains(event.target) &&
+        !menuToggle.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+  }
+
+  /* =========================
+     Reveal Animation
+     ========================= */
+
+  const revealElements =
+    document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries, observerInstance) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observerInstance.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+      }
     );
 
-  pointer-events: none;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 5;
-
-  max-width: 930px;
-
-  padding: 120px 0;
-}
-
-.hero h1 {
-  max-width: 950px;
-
-  font-size: clamp(3rem, 8vw, 6.7rem);
-
-  line-height: 0.99;
-
-  letter-spacing: -0.055em;
-
-  margin-bottom: 35px;
-}
-
-.hero-description {
-  max-width: 700px;
-
-  color: var(--muted);
-
-  font-size: clamp(1rem, 2vw, 1.25rem);
-
-  line-height: 1.8;
-
-  margin-bottom: 40px;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-
-  gap: 14px;
-}
-
-
-/* HERO ORBITS */
-
-.hero-orbit {
-  position: absolute;
-
-  border: 1px solid rgba(215, 181, 109, 0.17);
-
-  border-radius: 50%;
-
-  pointer-events: none;
-}
-
-.hero-orbit-one {
-  width: 620px;
-  height: 620px;
-
-  right: -260px;
-  top: 80px;
-}
-
-.hero-orbit-two {
-  width: 420px;
-  height: 420px;
-
-  right: -160px;
-  top: 180px;
-
-  border-color: rgba(215, 181, 109, 0.1);
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.btn {
-  min-height: 50px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 13px 27px;
-
-  border-radius: 3px;
-
-  font-size: 0.87rem;
-  font-weight: 800;
-
-  letter-spacing: 0.02em;
-
-  cursor: pointer;
-
-  transition:
-    transform var(--transition),
-    background var(--transition),
-    color var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition);
-}
-
-.btn:hover {
-  transform: translateY(-3px);
-}
-
-.btn-primary {
-  background: var(--accent);
-  color: var(--bg);
-
-  box-shadow:
-    0 10px 30px rgba(215, 181, 109, 0.15);
-}
-
-.btn-primary:hover {
-  background: var(--accent-light);
-
-  box-shadow:
-    0 14px 35px rgba(215, 181, 109, 0.23);
-}
-
-.btn-secondary {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  color: var(--white);
-
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-
-  border-color: rgba(255, 255, 255, 0.35);
-}
-
-
-/* =========================
-   FOUNDATION
-========================= */
-
-.values {
-  padding: 100px 0;
-
-  background: var(--white);
-}
-
-.values-grid {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 22px;
-}
-
-.value-card {
-  position: relative;
-
-  padding: 38px;
-
-  background: var(--white);
-
-  border: 1px solid var(--dark-border);
-
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition),
-    border-color var(--transition);
-}
-
-.value-card:hover {
-  transform: translateY(-7px);
-
-  box-shadow: var(--shadow-soft);
-
-  border-color: rgba(215, 181, 109, 0.45);
-}
-
-.card-number {
-  display: block;
-
-  color: var(--accent-dark);
-
-  font-size: 0.72rem;
-  font-weight: 800;
-
-  letter-spacing: 0.16em;
-
-  margin-bottom: 24px;
-}
-
-.value-card h3 {
-  font-size: 1.4rem;
-
-  margin-bottom: 13px;
-}
-
-.value-card p {
-  color: var(--muted-dark);
-}
-
-
-/* =========================
-   ABOUT
-========================= */
-
-.about-layout {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 90px;
-
-  align-items: start;
-}
-
-.about-lead p {
-  font-size: clamp(1.45rem, 3vw, 2rem);
-
-  line-height: 1.45;
-
-  letter-spacing: -0.025em;
-}
-
-.about-copy {
-  color: var(--muted-dark);
-
-  font-size: 1.05rem;
-}
-
-.about-copy p + p {
-  margin-top: 25px;
-}
-
-
-/* =========================
-   ECOSYSTEM
-========================= */
-
-.section-dark {
-  background: var(--bg);
-
-  color: var(--text);
-}
-
-.section-dark .section-heading h2 {
-  color: var(--white);
-}
-
-.pillars-grid {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 1px;
-
-  background: var(--border);
-
-  border: 1px solid var(--border);
-}
-
-.pillar {
-  min-height: 270px;
-
-  padding: 36px;
-
-  background: var(--bg);
-
-  transition:
-    background var(--transition);
-}
-
-.pillar:hover {
-  background: var(--bg-soft);
-}
-
-.pillar span {
-  display: block;
-
-  color: var(--accent);
-
-  font-size: 0.74rem;
-  font-weight: 800;
-
-  letter-spacing: 0.16em;
-
-  margin-bottom: 35px;
-}
-
-.pillar h3 {
-  font-size: 1.45rem;
-
-  margin-bottom: 13px;
-}
-
-.pillar p {
-  color: var(--muted);
-
-  max-width: 330px;
-}
-
-.ecosystem-note {
-  margin-top: 35px;
-
-  color: var(--accent);
-
-  font-size: 0.88rem;
-  font-weight: 700;
-
-  letter-spacing: 0.04em;
-}
-
-
-/* =========================
-   SOLUTIONS
-========================= */
-
-.solutions-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 20px;
-}
-
-.solution-card {
-  position: relative;
-
-  padding: 38px;
-
-  background: var(--white);
-
-  border: 1px solid var(--dark-border);
-
-  transition:
-    transform var(--transition),
-    box-shadow var(--transition),
-    border-color var(--transition);
-}
-
-.solution-card:hover {
-  transform: translateY(-6px);
-
-  box-shadow: var(--shadow-soft);
-
-  border-color: rgba(215, 181, 109, 0.45);
-}
-
-.solution-card h3 {
-  font-size: 1.35rem;
-
-  margin-bottom: 13px;
-}
-
-.solution-card p {
-  color: var(--muted-dark);
-}
-
-
-/* =========================
-   INNOVATION
-========================= */
-
-.innovation {
-  background:
-    linear-gradient(
-      135deg,
-      #f0f3f7,
-      #ffffff
-    );
-}
-
-.innovation-layout {
-  display: grid;
-
-  grid-template-columns: 0.9fr 1.1fr;
-
-  gap: 100px;
-}
-
-.innovation-layout h2 {
-  max-width: 600px;
-
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
-
-  line-height: 1.05;
-
-  letter-spacing: -0.045em;
-}
-
-.innovation-layout > div:last-child {
-  color: var(--muted-dark);
-
-  font-size: 1.08rem;
-}
-
-.innovation-layout > div:last-child p + p {
-  margin-top: 25px;
-}
-
-
-/* =========================
-   KNOWLEDGE
-========================= */
-
-.knowledge {
-  background: #edf1f5;
-}
-
-.knowledge-grid {
-  display: grid;
-
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 1px;
-
-  background: var(--dark-border);
-
-  border: 1px solid var(--dark-border);
-}
-
-.knowledge-grid article {
-  min-height: 210px;
-
-  padding: 34px;
-
-  background: #edf1f5;
-}
-
-.knowledge-grid h3 {
-  font-size: 1.3rem;
-
-  margin-bottom: 12px;
-}
-
-.knowledge-grid p {
-  color: var(--muted-dark);
-}
-
-
-/* =========================
-   IMPACT
-========================= */
-
-.impact {
-  position: relative;
-
-  overflow: hidden;
-}
-
-.impact::after {
-  content: "";
-
-  position: absolute;
-
-  width: 500px;
-  height: 500px;
-
-  right: -260px;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  border: 1px solid rgba(215, 181, 109, 0.13);
-
-  border-radius: 50%;
-}
-
-.impact-layout {
-  position: relative;
-  z-index: 2;
-
-  display: grid;
-
-  grid-template-columns: 0.9fr 1.1fr;
-
-  gap: 100px;
-}
-
-.impact-layout h2 {
-  max-width: 650px;
-
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
-
-  line-height: 1.05;
-
-  letter-spacing: -0.045em;
-}
-
-.impact-layout > div:last-child {
-  color: var(--muted);
-
-  font-size: 1.08rem;
-}
-
-.impact-layout > div:last-child p + p {
-  margin-top: 25px;
-}
-
-.impact strong {
-  color: var(--accent);
-}
-
-
-/* =========================
-   DIGITAL FACTORY
-========================= */
-
-.factory {
-  background: var(--white);
-}
-
-.factory-flow {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
-
-  margin-top: 50px;
-}
-
-.factory-flow span {
-  padding: 13px 18px;
-
-  background: var(--bg);
-
-  color: var(--white);
-
-  border: 1px solid rgba(215, 181, 109, 0.15);
-
-  font-size: 0.78rem;
-  font-weight: 700;
-
-  letter-spacing: 0.04em;
-}
-
-.factory-flow span::after {
-  content: "→";
-
-  color: var(--accent);
-
-  margin-left: 12px;
-}
-
-.factory-flow span:last-child::after {
-  content: "";
-  margin: 0;
-}
-
-.factory-note {
-  max-width: 820px;
-
-  margin-top: 40px;
-
-  padding: 28px;
-
-  border-left: 2px solid var(--accent);
-
-  background: #f5f7fa;
-
-  color: var(--muted-dark);
-}
-
-
-/* =========================
-   PARTNERSHIPS
-========================= */
-
-.partnerships {
-  background: #f1f4f7;
-}
-
-.partner-tags {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  justify-content: center;
-
-  gap: 10px;
-
-  max-width: 950px;
-
-  margin: 0 auto 40px;
-}
-
-.partner-tags span {
-  padding: 11px 17px;
-
-  background: var(--white);
-
-  border: 1px solid var(--dark-border);
-
-  color: var(--text-dark);
-
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact {
-  background: var(--white);
-}
-
-.contact-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 20px;
-
-  max-width: 900px;
-
-  margin: 0 auto 55px;
-}
-
-.contact-card {
-  display: flex;
-
-  flex-direction: column;
-
-  align-items: flex-start;
-
-  padding: 34px;
-
-  background: #f7f9fb;
-
-  border: 1px solid var(--dark-border);
-
-  text-align: left;
-
-  transition:
-    transform var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition);
-}
-
-.contact-card:hover {
-  transform: translateY(-5px);
-
-  border-color: rgba(215, 181, 109, 0.55);
-
-  box-shadow: var(--shadow-soft);
-}
-
-.contact-label {
-  color: var(--accent-dark);
-
-  font-size: 0.7rem;
-  font-weight: 800;
-
-  letter-spacing: 0.18em;
-
-  margin-bottom: 12px;
-}
-
-.contact-card strong {
-  font-size: 1.05rem;
-
-  margin-bottom: 12px;
-
-  word-break: break-word;
-}
-
-.contact-card span:last-child {
-  color: var(--muted-dark);
-
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-
-/* =========================
-   CONTACT FORM
-========================= */
-
-.contact-form-wrapper {
-  max-width: 900px;
-
-  margin: 0 auto;
-}
-
-.contact-form {
-  padding: 42px;
-
-  background: #f7f9fb;
-
-  border: 1px solid var(--dark-border);
-
-  text-align: left;
-}
-
-.form-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 20px;
-}
-
-.contact-form label {
-  display: block;
-
-  margin-bottom: 22px;
-}
-
-.contact-form label span {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: var(--text-dark);
-
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-  width: 100%;
-
-  border: 1px solid rgba(20, 34, 53, 0.16);
-
-  border-radius: 2px;
-
-  background: var(--white);
-
-  color: var(--text-dark);
-
-  padding: 13px 14px;
-
-  outline: none;
-
-  transition:
-    border-color var(--transition),
-    box-shadow var(--transition);
-}
-
-.contact-form textarea {
-  resize: vertical;
-
-  min-height: 160px;
-}
-
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-  border-color: var(--accent-dark);
-
-  box-shadow:
-    0 0 0 3px rgba(215, 181, 109, 0.13);
-}
-
-.contact-form .btn {
-  margin-top: 5px;
-}
-
-.form-note {
-  margin-top: 15px;
-
-  color: var(--muted-dark);
-
-  font-size: 0.78rem;
-
-  text-align: center;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-.site-footer {
-  padding: 70px 0 25px;
-
-  background: var(--bg);
-
-  color: var(--muted);
-}
-
-.footer-grid {
-  display: grid;
-
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-
-  gap: 50px;
-
-  padding-bottom: 55px;
-
-  border-bottom: 1px solid var(--border);
-}
-
-.footer-brand strong {
-  display: block;
-
-  color: var(--white);
-
-  font-size: 1.15rem;
-
-  letter-spacing: 0.08em;
-
-  margin-bottom: 18px;
-}
-
-.footer-brand p {
-  color: var(--accent);
-
-  font-size: 0.88rem;
-
-  line-height: 1.8;
-}
-
-.footer-column {
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 9px;
-}
-
-.footer-column h3 {
-  color: var(--white);
-
-  font-size: 0.82rem;
-
-  letter-spacing: 0.12em;
-
-  text-transform: uppercase;
-
-  margin-bottom: 9px;
-}
-
-.footer-column a {
-  width: fit-content;
-
-  color: var(--muted);
-
-  font-size: 0.83rem;
-
-  transition: color var(--transition);
-}
-
-.footer-column a:hover {
-  color: var(--accent-light);
-}
-
-.footer-bottom {
-  display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-
-  gap: 25px;
-
-  padding-top: 24px;
-}
-
-.footer-bottom p {
-  font-size: 0.75rem;
-
-  color: var(--muted);
-}
-
-
-/* =========================
-   REVEAL ANIMATION
-========================= */
-
-.reveal {
-  opacity: 0;
-
-  transform: translateY(25px);
-
-  transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-
-  transform: translateY(0);
-}
-
-
-/* =========================
-   RESPONSIVE — TABLET
-========================= */
-
-@media (max-width: 1000px) {
-
-  .main-nav {
-    gap: 16px;
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+  } else {
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
   }
 
-  .main-nav a {
-    font-size: 0.76rem;
+  /* =========================
+     Automatic Year
+     ========================= */
+
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
   }
 
-  .values-grid,
-  .pillars-grid {
-    grid-template-columns: repeat(2, 1fr);
+  /* =========================
+     Contact Form
+     ========================= */
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(contactForm);
+
+      const name =
+        String(formData.get("name") || "").trim();
+
+      const email =
+        String(formData.get("email") || "").trim();
+
+      const organization =
+        String(formData.get("organization") || "").trim();
+
+      const purpose =
+        String(formData.get("purpose") || "").trim();
+
+      const message =
+        String(formData.get("message") || "").trim();
+
+      if (!name || !email || !message) {
+        return;
+      }
+
+      const language = html.lang === "ar" ? "ar" : "en";
+
+      let subject;
+      let bodyText;
+
+      if (language === "ar") {
+        subject = `رسالة من موقع EMERIONA — ${purpose || "استفسار عام"}`;
+
+        bodyText =
+          `الاسم: ${name}\n` +
+          `البريد الإلكتروني: ${email}\n` +
+          `المؤسسة / الشركة: ${organization || "غير مذكور"}\n` +
+          `الغرض: ${purpose || "استفسار عام"}\n\n` +
+          `الرسالة:\n${message}`;
+      } else {
+        subject = `EMERIONA Website Inquiry — ${purpose || "General Inquiry"}`;
+
+        bodyText =
+          `Full Name: ${name}\n` +
+          `Email: ${email}\n` +
+          `Organization / Company: ${organization || "Not provided"}\n` +
+          `Purpose: ${purpose || "General Inquiry"}\n\n` +
+          `Message:\n${message}`;
+      }
+
+      const mailto =
+        `mailto:emeriona.global@gmail.com` +
+        `?subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(bodyText)}`;
+
+      window.location.href = mailto;
+    });
   }
 
-  .knowledge-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .about-layout,
-  .innovation-layout,
-  .impact-layout {
-    grid-template-columns: 1fr;
-
-    gap: 50px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 2fr 1fr 1fr;
-  }
-}
-
-
-/* =========================
-   RESPONSIVE — MOBILE
-========================= */
-
-@media (max-width: 760px) {
-
-  :root {
-    --header-height: 68px;
-  }
-
-  .container {
-    width: min(100% - 28px, var(--max-width));
-  }
-
-  .section {
-    padding: 80px 0;
-  }
-
-  .values {
-    padding: 75px 0;
-  }
-
-
-  /* MOBILE HEADER */
-
-  .main-nav {
-    position: fixed;
-
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: stretch;
-
-    gap: 0;
-
-    padding: 15px 20px 25px;
-
-    background: rgba(7, 17, 31, 0.98);
-
-    border-bottom: 1px solid var(--border);
-
-    transform: translateY(-120%);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transition:
-      transform 0.35s ease,
-      opacity 0.35s ease;
-  }
-
-  .main-nav.open {
-    transform: translateY(0);
-
-    opacity: 1;
-
-    pointer-events: auto;
-  }
-
-  .main-nav a {
-    padding: 15px 5px;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-
-    font-size: 0.9rem;
-  }
-
-  .main-nav a::after {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-
-  /* HERO */
-
-  .hero {
-    min-height: 680px;
-  }
-
-  .hero-content {
-    padding: 85px 0;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.7rem, 14vw, 4.8rem);
-
-    line-height: 1.01;
-  }
-
-  .hero-description {
-    font-size: 1rem;
-  }
-
-  .hero-orbit-one {
-    width: 400px;
-    height: 400px;
-
-    right: -250px;
-  }
-
-  .hero-orbit-two {
-    width: 280px;
-    height: 280px;
-
-    right: -160px;
-  }
-
-
-  /* GRIDS */
-
-  .values-grid,
-  .pillars-grid,
-  .solutions-grid,
-  .knowledge-grid,
-  .contact-grid,
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-
-
-  /* ABOUT */
-
-  .about-lead p {
-    font-size: 1.45rem;
-  }
-
-
-  /* CONTACT */
-
-  .contact-form {
-    padding: 25px 20px;
-  }
-
-
-  /* FOOTER */
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-
-    gap: 40px 25px;
-  }
-
-  .footer-brand {
-    grid-column: 1 / -1;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-
-    align-items: flex-start;
-  }
-}
-
-
-/* =========================
-   SMALL MOBILE
-========================= */
-
-@media (max-width: 440px) {
-
-  .hero-actions {
-    flex-direction: column;
-
-    align-items: stretch;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .pillar,
-  .value-card,
-  .solution-card {
-    padding: 28px;
-  }
-
-  .factory-flow {
-    gap: 8px;
-  }
-
-  .factory-flow span {
-    width: 100%;
-  }
-
-  .factory-flow span::after {
-    float: right;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* =========================
-   REDUCED MOTION
-========================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .reveal {
-    opacity: 1;
-
-    transform: none;
-  }
-}
+  /* =========================
+     Initialize
+     ========================= */
+
+  setLanguage(getSavedLanguage());
+})();

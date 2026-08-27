@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".menu-toggle");
   const mainNav = document.querySelector(".main-nav");
 
@@ -52,6 +52,4 @@ document.addEventListener("DOMContentLoaded", () => {
   const yearElement = document.getElementById("year");
 
   if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
-});
+    yearElement.textContent

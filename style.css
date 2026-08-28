@@ -13,11 +13,17 @@
   --max: 1180px;
 }
 
+
+/* =========================================================
+   RESET / BASE
+========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 html,
 body {
   width: 100%;
@@ -25,22 +31,13 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  min-width: 0;
-}
-
-img,
-picture,
-video,
-iframe {
-  max-width: 100%;
-}
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 82px;
 }
 
 body {
+  min-width: 0;
   font-family:
     Inter,
     -apple-system,
@@ -70,8 +67,15 @@ textarea {
   font: inherit;
 }
 
-img {
+img,
+picture,
+video,
+iframe {
   max-width: 100%;
+}
+
+img {
+  height: auto;
 }
 
 .container {
@@ -108,14 +112,15 @@ img {
   color: var(--white);
   font-weight: 850;
   letter-spacing: 0.12em;
-  font-size: 1.15rem;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .logo img {
   display: block;
-  width: 145px;
+  width: 185px;
   height: auto;
+  max-height: 58px;
   object-fit: contain;
 }
 
@@ -202,7 +207,14 @@ img {
 /* =========================================================
    HERO
 ========================================================= */
-hero {
+
+/*
+  IMPORTANT:
+  The original file used "hero" instead of ".hero".
+  Since the HTML uses class="hero", the selector must be ".hero".
+*/
+
+.hero {
   position: relative;
   min-height: 760px;
   display: flex;
@@ -228,37 +240,43 @@ hero {
   position: absolute;
   inset: 0;
   z-index: -3;
+  overflow: hidden;
 }
 
-.hero-media picture,
-.hero-media img {
+.hero-media picture {
   width: 100%;
   height: 100%;
   display: block;
 }
+
+.hero-media picture img,
 .hero-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
   object-fit: cover;
   object-position: center center;
-  opacity: 0.68;
-  filter: saturate(0.9) contrast(1.04);
-
+  opacity: 0.82;
+  filter: saturate(0.98) contrast(1.03);
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   z-index: -2;
+  pointer-events: none;
   background:
     linear-gradient(
       90deg,
-      rgba(7, 17, 31, 0.93) 0%,
-      rgba(7, 17, 31, 0.72) 42%,
-      rgba(7, 17, 31, 0.30) 100%
+      rgba(7, 17, 31, 0.86) 0%,
+      rgba(7, 17, 31, 0.62) 38%,
+      rgba(7, 17, 31, 0.28) 72%,
+      rgba(7, 17, 31, 0.20) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(7, 17, 31, 0.25),
-      rgba(7, 17, 31, 0.48)
+      rgba(7, 17, 31, 0.18) 0%,
+      rgba(7, 17, 31, 0.32) 100%
     );
 }
 
@@ -287,21 +305,26 @@ hero {
 .hero-content {
   position: relative;
   z-index: 2;
+  width: 100%;
   padding: 120px 0;
   max-width: 980px;
 }
 
 .hero .eyebrow {
+  margin-bottom: 20px;
   color: var(--gold2);
 }
 
 .hero h1 {
   max-width: 920px;
-  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-size: clamp(3.4rem, 7.2vw, 6.7rem);
   line-height: 0.98;
   letter-spacing: -0.055em;
   color: #ffffff;
-  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.25);
+  font-weight: 850;
+  text-shadow:
+    0 3px 24px rgba(0, 0, 0, 0.32),
+    0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
 .hero h1 span {
@@ -311,10 +334,10 @@ hero {
 .hero-description {
   max-width: 760px;
   margin: 34px 0 38px;
-  color: #d9e1ea;
+  color: #e5ebf2;
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.8;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
 }
 
 .hero-actions {
@@ -365,9 +388,9 @@ hero {
 }
 
 
-
 /* =========================================================
    GENERAL SECTIONS
+   — PRESERVED
 ========================================================= */
 
 .section {
@@ -916,6 +939,10 @@ textarea {
     padding: 95px 0;
   }
 
+  .hero h1 {
+    font-size: clamp(3.2rem, 8vw, 5.5rem);
+  }
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -937,7 +964,8 @@ textarea {
   }
 
   .logo img {
-    width: 125px;
+    width: 150px;
+    max-height: 50px;
   }
 
   .menu-toggle {
@@ -983,22 +1011,24 @@ textarea {
     min-height: 690px;
   }
 
+  .hero-media picture img,
   .hero-media img {
     object-position: center center;
-    opacity: 0.55;
+    opacity: 0.66;
   }
 
   .hero-overlay {
     background:
       linear-gradient(
         90deg,
-        rgba(7, 17, 31, 0.93),
-        rgba(7, 17, 31, 0.70)
+        rgba(7, 17, 31, 0.88) 0%,
+        rgba(7, 17, 31, 0.68) 65%,
+        rgba(7, 17, 31, 0.42) 100%
       ),
       linear-gradient(
         180deg,
-        rgba(7, 17, 31, 0.25),
-        rgba(7, 17, 31, 0.55)
+        rgba(7, 17, 31, 0.20),
+        rgba(7, 17, 31, 0.46)
       );
   }
 
@@ -1009,9 +1039,12 @@ textarea {
   .hero h1 {
     max-width: 100%;
     font-size: clamp(2.75rem, 13vw, 4.7rem);
+    line-height: 0.99;
   }
 
   .hero-description {
+    max-width: 100%;
+    margin: 28px 0 34px;
     font-size: 1rem;
   }
 
@@ -1085,6 +1118,40 @@ textarea {
     height: 280px;
     right: -90px;
     bottom: -150px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .logo img {
+    width: 135px;
+  }
+
+  .language-toggle {
+    min-width: 40px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .hero {
+    min-height: 650px;
+  }
+
+  .hero-content {
+    padding: 70px 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.55rem, 14vw, 4rem);
+  }
+
+  .hero-description {
+    font-size: 0.96rem;
   }
 }
 

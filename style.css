@@ -13,9 +13,8 @@
   --max: 1180px;
 }
 
-
 /* =========================================================
-   RESET / BASE
+   RESET
 ========================================================= */
 
 * {
@@ -106,22 +105,23 @@ img {
   gap: 30px;
 }
 
-.logo {
+/*
+  The current index.html uses .brand-name rather than
+  the previous .logo class.
+*/
+.brand-name {
   display: inline-flex;
   align-items: center;
   color: var(--white);
   font-weight: 850;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.075em;
+  font-size: 1.08rem;
   white-space: nowrap;
-  flex-shrink: 0;
+  transition: color 0.25s ease;
 }
 
-.logo img {
-  display: block;
-  width: 185px;
-  height: auto;
-  max-height: 58px;
-  object-fit: contain;
+.brand-name:hover {
+  color: var(--gold2);
 }
 
 .main-nav {
@@ -206,13 +206,8 @@ img {
 
 /* =========================================================
    HERO
+   FINAL HERO SYSTEM
 ========================================================= */
-
-/*
-  IMPORTANT:
-  The original file used "hero" instead of ".hero".
-  Since the HTML uses class="hero", the selector must be ".hero".
-*/
 
 .hero {
   position: relative;
@@ -236,6 +231,10 @@ img {
   color: var(--white);
 }
 
+/* ---------------------------------------------------------
+   HERO IMAGE
+--------------------------------------------------------- */
+
 .hero-media {
   position: absolute;
   inset: 0;
@@ -244,41 +243,66 @@ img {
 }
 
 .hero-media picture {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
 }
 
-.hero-media picture img,
 .hero-media img {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
+  max-width: none;
   object-fit: cover;
+
+  /*
+    Keep the actual cover visible.
+    The overlay below handles text contrast.
+  */
   object-position: center center;
-  opacity: 0.82;
-  filter: saturate(0.98) contrast(1.03);
+  opacity: 0.78;
+  filter:
+    saturate(0.94)
+    contrast(1.05)
+    brightness(0.98);
+
+  transform: scale(1.015);
 }
+
+/* ---------------------------------------------------------
+   HERO OVERLAY
+--------------------------------------------------------- */
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   z-index: -2;
   pointer-events: none;
+
+  /*
+    Darker on the text side.
+    Lighter toward the image side.
+    This preserves the cover instead of hiding it.
+  */
   background:
     linear-gradient(
       90deg,
-      rgba(7, 17, 31, 0.86) 0%,
-      rgba(7, 17, 31, 0.62) 38%,
-      rgba(7, 17, 31, 0.28) 72%,
+      rgba(7, 17, 31, 0.91) 0%,
+      rgba(7, 17, 31, 0.76) 30%,
+      rgba(7, 17, 31, 0.50) 57%,
       rgba(7, 17, 31, 0.20) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(7, 17, 31, 0.18) 0%,
-      rgba(7, 17, 31, 0.32) 100%
+      rgba(7, 17, 31, 0.24) 0%,
+      rgba(7, 17, 31, 0.10) 42%,
+      rgba(7, 17, 31, 0.48) 100%
     );
 }
+
+/* ---------------------------------------------------------
+   DECORATIVE ORBITS
+--------------------------------------------------------- */
 
 .hero-orbit {
   position: absolute;
@@ -302,43 +326,131 @@ img {
   bottom: -210px;
 }
 
+/* ---------------------------------------------------------
+   HERO CONTENT
+--------------------------------------------------------- */
+
+.hero > .container {
+  width: min(calc(100% - 40px), var(--max));
+}
+
 .hero-content {
   position: relative;
   z-index: 2;
-  width: 100%;
-  padding: 120px 0;
-  max-width: 980px;
+  max-width: 920px;
+  padding: 112px 0 118px;
 }
 
-.hero .eyebrow {
-  margin-bottom: 20px;
+/* Small institutional kicker */
+
+.hero-kicker {
+  margin-bottom: 13px;
   color: var(--gold2);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
 }
+
+/*
+  Main EMERIONA GLOBAL brand line.
+  This is intentionally larger than the kicker
+  and visually establishes the company name.
+*/
+
+.hero-brand {
+  margin-bottom: 15px;
+  color: var(--gold2);
+  font-size: clamp(1.7rem, 3.2vw, 2.65rem);
+  line-height: 1.08;
+  font-weight: 850;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  text-shadow:
+    0 2px 18px rgba(0, 0, 0, 0.35),
+    0 0 26px rgba(215, 181, 109, 0.08);
+}
+
+/*
+  Institutional descriptor:
+  A Global Ecosystem for Empowerment, Innovation & Impact
+*/
+
+.hero-tagline {
+  max-width: 760px;
+  margin-bottom: 30px;
+  color: #eef2f6;
+  font-size: clamp(0.98rem, 1.65vw, 1.16rem);
+  line-height: 1.55;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.34);
+}
+
+/* ---------------------------------------------------------
+   HERO MAIN TITLE
+--------------------------------------------------------- */
 
 .hero h1 {
   max-width: 920px;
-  font-size: clamp(3.4rem, 7.2vw, 6.7rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  font-size: clamp(3rem, 6.5vw, 6.15rem);
   line-height: 0.98;
   letter-spacing: -0.055em;
-  color: #ffffff;
   font-weight: 850;
+
   text-shadow:
-    0 3px 24px rgba(0, 0, 0, 0.32),
-    0 1px 2px rgba(0, 0, 0, 0.35);
+    0 3px 24px rgba(0, 0, 0, 0.28),
+    0 0 40px rgba(0, 0, 0, 0.12);
 }
 
-.hero h1 span {
+.hero-title-line {
+  display: block;
+}
+
+.hero-title-white {
+  color: #ffffff;
+}
+
+.hero-title-gold {
   color: var(--gold2);
 }
 
-.hero-description {
-  max-width: 760px;
-  margin: 34px 0 38px;
-  color: #e5ebf2;
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  line-height: 1.8;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+/*
+  Fallback for any existing span-based hero title.
+*/
+.hero h1 span {
+  display: block;
 }
+
+.hero h1 span.hero-title-white {
+  color: #ffffff;
+}
+
+.hero h1 span.hero-title-gold {
+  color: var(--gold2);
+}
+
+/* ---------------------------------------------------------
+   HERO DESCRIPTION
+--------------------------------------------------------- */
+
+.hero-description {
+  max-width: 710px;
+  margin: 30px 0 36px;
+  color: #d9e1ea;
+  font-size: clamp(0.98rem, 1.55vw, 1.14rem);
+  line-height: 1.8;
+  font-weight: 400;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.34);
+}
+
+/* ---------------------------------------------------------
+   HERO ACTIONS
+--------------------------------------------------------- */
 
 .hero-actions {
   display: flex;
@@ -360,7 +472,8 @@ img {
   transition:
     transform 0.25s ease,
     background 0.25s ease,
-    border-color 0.25s ease;
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
 .btn:hover {
@@ -377,20 +490,19 @@ img {
 }
 
 .btn-secondary {
-  border-color: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.32);
   color: var(--white);
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 
 /* =========================================================
    GENERAL SECTIONS
-   — PRESERVED
 ========================================================= */
 
 .section {
@@ -639,7 +751,8 @@ img {
   letter-spacing: 0.15em;
 }
 
-.method-step h3 {
+.method-step h3,
+.method-step strong {
   font-size: 1.05rem;
 }
 
@@ -939,8 +1052,12 @@ textarea {
     padding: 95px 0;
   }
 
+  .hero-brand {
+    font-size: clamp(1.55rem, 3.8vw, 2.2rem);
+  }
+
   .hero h1 {
-    font-size: clamp(3.2rem, 8vw, 5.5rem);
+    font-size: clamp(2.9rem, 7vw, 5.4rem);
   }
 
   .footer-grid {
@@ -963,9 +1080,9 @@ textarea {
     min-height: 68px;
   }
 
-  .logo img {
-    width: 150px;
-    max-height: 50px;
+  .brand-name {
+    font-size: 0.95rem;
+    letter-spacing: 0.055em;
   }
 
   .menu-toggle {
@@ -1007,46 +1124,101 @@ textarea {
     display: none;
   }
 
+  /* -------------------------------------------------------
+     MOBILE HERO
+  ------------------------------------------------------- */
+
   .hero {
-    min-height: 690px;
+    min-height: 700px;
   }
 
-  .hero-media picture img,
   .hero-media img {
     object-position: center center;
-    opacity: 0.66;
+    opacity: 0.70;
   }
 
   .hero-overlay {
     background:
       linear-gradient(
         90deg,
-        rgba(7, 17, 31, 0.88) 0%,
-        rgba(7, 17, 31, 0.68) 65%,
-        rgba(7, 17, 31, 0.42) 100%
+        rgba(7, 17, 31, 0.94) 0%,
+        rgba(7, 17, 31, 0.78) 48%,
+        rgba(7, 17, 31, 0.48) 100%
       ),
       linear-gradient(
         180deg,
-        rgba(7, 17, 31, 0.20),
-        rgba(7, 17, 31, 0.46)
+        rgba(7, 17, 31, 0.26) 0%,
+        rgba(7, 17, 31, 0.16) 40%,
+        rgba(7, 17, 31, 0.58) 100%
       );
   }
 
   .hero-content {
-    padding: 85px 0;
+    padding: 78px 0 82px;
+    max-width: 100%;
+  }
+
+  .hero-kicker {
+    margin-bottom: 10px;
+    font-size: 0.64rem;
+    letter-spacing: 0.20em;
+  }
+
+  .hero-brand {
+    max-width: 100%;
+    margin-bottom: 12px;
+    font-size: clamp(1.45rem, 7.5vw, 2.15rem);
+    line-height: 1.08;
+    letter-spacing: 0.035em;
+  }
+
+  .hero-tagline {
+    max-width: 100%;
+    margin-bottom: 25px;
+    font-size: 0.92rem;
+    line-height: 1.55;
   }
 
   .hero h1 {
     max-width: 100%;
-    font-size: clamp(2.75rem, 13vw, 4.7rem);
+    font-size: clamp(2.55rem, 12.5vw, 4.45rem);
     line-height: 0.99;
+    letter-spacing: -0.055em;
   }
 
   .hero-description {
     max-width: 100%;
-    margin: 28px 0 34px;
-    font-size: 1rem;
+    margin: 26px 0 31px;
+    font-size: 0.96rem;
+    line-height: 1.75;
   }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .orbit-one {
+    width: 420px;
+    height: 420px;
+    right: -230px;
+    top: -80px;
+  }
+
+  .orbit-two {
+    width: 280px;
+    height: 280px;
+    right: -90px;
+    bottom: -150px;
+  }
+
+  /* -------------------------------------------------------
+     GENERAL MOBILE
+  ------------------------------------------------------- */
 
   .section,
   .values {
@@ -1096,62 +1268,46 @@ textarea {
   .footer-bottom {
     flex-direction: column;
   }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .orbit-one {
-    width: 420px;
-    height: 420px;
-    right: -230px;
-    top: -80px;
-  }
-
-  .orbit-two {
-    width: 280px;
-    height: 280px;
-    right: -90px;
-    bottom: -150px;
-  }
 }
 
 
 /* =========================================================
-   VERY SMALL MOBILE
+   VERY SMALL DEVICES
 ========================================================= */
 
 @media (max-width: 420px) {
 
-  .logo img {
-    width: 135px;
-  }
-
-  .language-toggle {
-    min-width: 40px;
-    padding-left: 8px;
-    padding-right: 8px;
+  .container {
+    width: min(calc(100% - 24px), var(--max));
   }
 
   .hero {
-    min-height: 650px;
+    min-height: 680px;
   }
 
   .hero-content {
-    padding: 70px 0;
+    padding: 70px 0 75px;
+  }
+
+  .hero-brand {
+    font-size: 1.38rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.88rem;
   }
 
   .hero h1 {
-    font-size: clamp(2.55rem, 14vw, 4rem);
+    font-size: clamp(2.35rem, 12.2vw, 3.65rem);
   }
 
   .hero-description {
-    font-size: 0.96rem;
+    font-size: 0.92rem;
+  }
+
+  .section,
+  .values {
+    padding: 68px 0;
   }
 }
 
@@ -1177,6 +1333,10 @@ textarea {
 
   .reveal {
     opacity: 1;
+    transform: none;
+  }
+
+  .hero-media img {
     transform: none;
   }
 }

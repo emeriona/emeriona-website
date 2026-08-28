@@ -1,866 +1,447 @@
-/* =========================================================
-   EMERIONA GLOBAL
-   Institutional Website — Core Interaction System
-   Version: 4.0
-   ========================================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
-  "use strict";
 
   /* =========================================================
-     01. CORE REFERENCES & CONFIGURATION
-     ========================================================= */
+     MOBILE NAVIGATION
+  ========================================================= */
 
-  const body = document.body;
-  const documentElement = document.documentElement;
+  const menuToggle = document.querySelector(".menu-toggle");
+  const mainNav = document.querySelector(".main-nav");
 
-  const CONFIG = {
-    mobileBreakpoint: 820,
-    headerScrollOffset: 20,
-    revealThreshold: 0.12,
-    revealRootMargin: "0px 0px -48px 0px",
-    navRootMargin: "-18% 0px -68% 0px",
-    staggerStep: 70,
-    menuTransitionMs: 320
-  };
+  if (menuToggle && mainNav) {
 
-  const SELECTORS = {
-    header: ".site-header",
-    menuButton: ".menu-toggle",
-    nav: ".main-nav",
-    navLinks: ".main-nav a",
-    reveal: ".reveal",
-    sections: "main section[id]",
-    year: "#year",
-    contactForm: ".contact-form-wrap form"
-  };
+    menuToggle.addEventListener("click", () => {
 
-  const header = document.querySelector(SELECTORS.header);
-  const menuButton = document.querySelector(SELECTORS.menuButton);
-  const nav = document.querySelector(SELECTORS.nav);
+      const isOpen = mainNav.classList.toggle("open");
 
-  const navLinks = nav
-    ? Array.from(nav.querySelectorAll(SELECTORS.navLinks))
-    : [];
-
-  const revealElements = Array.from(
-    document.querySelectorAll(SELECTORS.reveal)
-  );
-
-  const sections = Array.from(
-    document.querySelectorAll(SELECTORS.sections)
-  );
-
-  const yearElement = document.querySelector(SELECTORS.year);
-
-  const contactForm = document.querySelector(
-    SELECTORS.contactForm
-  );
-
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  );
-
-  let menuIsOpen = false;
-  let revealObserver = null;
-  let sectionObserver = null;
-
-
-  /* =========================================================
-     02. UTILITY FUNCTIONS
-     ========================================================= */
-
-  const isMobileViewport = () =>
-    window.innerWidth <= CONFIG.mobileBreakpoint;
-
-  const canAnimate = () =>
-    !prefersReducedMotion.matches;
-
-  const setAriaCurrent = (activeLink) => {
-    navLinks.forEach((link) => {
-      const isActive = link === activeLink;
-
-      link.classList.toggle(
-        "is-active",
-        isActive
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
       );
 
-      if (isActive) {
-        link.setAttribute(
-          "aria-current",
-          "page"
-        );
-      } else {
-        link.removeAttribute(
-          "aria-current"
-        );
-      }
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close navigation"
+          : "Open navigation"
+      );
     });
-  };
-
-  const getTargetFromLink = (link) => {
-    if (!link) return null;
-
-    const href = link.getAttribute("href");
-
-    if (
-      !href ||
-      href === "#" ||
-      !href.startsWith("#")
-    ) {
-      return null;
-    }
-
-    const id = href.slice(1);
-
-    if (!id) return null;
-
-    try {
-      return document.getElementById(
-        decodeURIComponent(id)
-      );
-    } catch {
-      return null;
-    }
-  };
 
 
-  /* =========================================================
-     03. MOBILE NAVIGATION
-     ========================================================= */
+    mainNav.querySelectorAll("a").forEach((link) => {
 
-  const setMenuState = (
-    isOpen,
-    options = {}
-  ) => {
-    if (!menuButton || !nav) return;
+      link.addEventListener("click", () => {
 
-    const {
-      restoreFocus = false,
-      immediate = false
-    } = options;
+        mainNav.classList.remove("open");
 
-    menuIsOpen = Boolean(isOpen);
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
 
-    nav.classList.toggle(
-      "is-open",
-      menuIsOpen
-    );
-
-    body.classList.toggle(
-      "menu-open",
-      menuIsOpen
-    );
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      String(menuIsOpen)
-    );
-
-    menuButton.setAttribute(
-      "aria-label",
-      menuIsOpen
-        ? "Close navigation"
-        : "Open navigation"
-    );
-
-    if (!nav.id) {
-      nav.id = "main-navigation";
-    }
-
-    menuButton.setAttribute(
-      "aria-controls",
-      nav.id
-    );
-
-    menuButton.textContent =
-      menuIsOpen ? "×" : "☰";
-
-    if (immediate) {
-      nav.style.transition = "none";
-
-      window.requestAnimationFrame(() => {
-        nav.style.transition = "";
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open navigation"
+        );
       });
-    }
 
-    if (!menuIsOpen && restoreFocus) {
-      window.setTimeout(() => {
-        if (
-          document.contains(menuButton)
-        ) {
-          menuButton.focus();
-        }
-      }, immediate
-        ? 0
-        : CONFIG.menuTransitionMs);
-    }
-  };
-
-  const toggleMenu = () => {
-    setMenuState(!menuIsOpen);
-  };
-
-  const initializeNavigation = () => {
-    if (!menuButton || !nav) return;
-
-    if (!nav.id) {
-      nav.id = "main-navigation";
-    }
-
-    menuButton.setAttribute(
-      "aria-controls",
-      nav.id
-    );
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-    menuButton.setAttribute(
-      "aria-label",
-      "Open navigation"
-    );
-
-    menuButton.setAttribute(
-      "type",
-      "button"
-    );
-
-    menuButton.addEventListener(
-      "click",
-      toggleMenu
-    );
-
-    navLinks.forEach((link) => {
-      link.addEventListener(
-        "click",
-        () => {
-          if (isMobileViewport()) {
-            setMenuState(false);
-          }
-        }
-      );
     });
 
-    document.addEventListener(
-      "click",
-      (event) => {
-        if (!menuIsOpen) return;
-
-        const target = event.target;
-
-        if (
-          !(target instanceof Node) ||
-          nav.contains(target) ||
-          menuButton.contains(target)
-        ) {
-          return;
-        }
-
-        setMenuState(false);
-      }
-    );
-
-    document.addEventListener(
-      "keydown",
-      (event) => {
-        if (
-          event.key === "Escape" &&
-          menuIsOpen
-        ) {
-          event.preventDefault();
-
-          setMenuState(false, {
-            restoreFocus: true
-          });
-        }
-      }
-    );
-
-    window.addEventListener(
-      "resize",
-      () => {
-        if (
-          !isMobileViewport() &&
-          menuIsOpen
-        ) {
-          setMenuState(false, {
-            immediate: true
-          });
-        }
-      },
-      {
-        passive: true
-      }
-    );
-  };
+  }
 
 
   /* =========================================================
-     04. HEADER SCROLL STATE
-     ========================================================= */
+     REVEAL ANIMATIONS
+  ========================================================= */
 
-  const updateHeaderState = () => {
-    if (!header) return;
+  const revealElements =
+    document.querySelectorAll(".reveal");
 
-    const isScrolled =
-      window.scrollY >
-      CONFIG.headerScrollOffset;
+  if ("IntersectionObserver" in window) {
 
-    header.classList.toggle(
-      "is-scrolled",
-      isScrolled
-    );
-  };
-
-  const initializeHeader = () => {
-    if (!header) return;
-
-    updateHeaderState();
-
-    window.addEventListener(
-      "scroll",
-      updateHeaderState,
-      {
-        passive: true
-      }
-    );
-  };
-
-
-  /* =========================================================
-     05. REVEAL / ENTRANCE ANIMATION ENGINE
-     ========================================================= */
-
-  const initializeRevealSystem = () => {
-    if (!revealElements.length) return;
-
-    const staggerGroups = [
-      ".values-grid",
-      ".pillars-grid",
-      ".solutions-grid",
-      ".knowledge-grid",
-      ".service-grid",
-      ".contact-grid"
-    ];
-
-    staggerGroups.forEach(
-      (groupSelector) => {
-        document
-          .querySelectorAll(groupSelector)
-          .forEach((group) => {
-            const items = Array.from(
-              group.querySelectorAll(
-                ".reveal"
-              )
-            );
-
-            items.forEach(
-              (item, index) => {
-                item.style.setProperty(
-                  "--reveal-delay",
-                  canAnimate()
-                    ? `${index *
-                        CONFIG.staggerStep}ms`
-                    : "0ms"
-                );
-              }
-            );
-          }
-        );
-      }
-    );
-
-    if (
-      prefersReducedMotion.matches ||
-      !(
-        "IntersectionObserver" in
-        window
-      )
-    ) {
-      revealElements.forEach(
-        (element) => {
-          element.classList.add(
-            "is-visible"
-          );
-
-          element.style.setProperty(
-            "--reveal-delay",
-            "0ms"
-          );
-        }
-      );
-
-      return;
-    }
-
-    revealObserver =
+    const observer =
       new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach(
-            (entry) => {
-              if (
-                !entry.isIntersecting
-              ) {
-                return;
-              }
+        (entries, observerInstance) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
 
               entry.target.classList.add(
                 "is-visible"
               );
 
-              observer.unobserve(
+              observerInstance.unobserve(
                 entry.target
               );
             }
-          );
+
+          });
+
         },
         {
-          threshold:
-            CONFIG.revealThreshold,
+          threshold: 0.12,
+          rootMargin: "0px 0px -40px 0px"
+        }
+      );
 
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+  } else {
+
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+
+  }
+
+
+  /* =========================================================
+     CURRENT YEAR
+  ========================================================= */
+
+  const yearElement =
+    document.getElementById("year");
+
+  if (yearElement) {
+
+    yearElement.textContent =
+      new Date().getFullYear();
+
+  }
+
+
+  /* =========================================================
+     ACTIVE NAVIGATION
+  ========================================================= */
+
+  const sections =
+    document.querySelectorAll(
+      "main section[id]"
+    );
+
+  const navLinks =
+    document.querySelectorAll(
+      '.main-nav a[href^="#"]'
+    );
+
+  if (
+    sections.length &&
+    navLinks.length &&
+    "IntersectionObserver" in window
+  ) {
+
+    const sectionObserver =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              const currentId =
+                entry.target.getAttribute("id");
+
+              navLinks.forEach((link) => {
+
+                const isCurrent =
+                  link.getAttribute("href") ===
+                  `#${currentId}`;
+
+                link.classList.toggle(
+                  "active",
+                  isCurrent
+                );
+
+              });
+
+            }
+
+          });
+
+        },
+        {
           rootMargin:
-            CONFIG.revealRootMargin
+            "-25% 0px -60% 0px",
+          threshold: 0
         }
       );
 
-    revealElements.forEach(
+    sections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+
+  }
+
+
+  /* =========================================================
+     LANGUAGE SYSTEM
+  ========================================================= */
+
+  const languageToggle =
+    document.querySelector(
+      "[data-language-toggle]"
+    );
+
+  const translatableElements =
+    document.querySelectorAll(
+      "[data-en][data-ar]"
+    );
+
+  const htmlElement =
+    document.documentElement;
+
+
+  function applyLanguage(language) {
+
+    const selectedLanguage =
+      language === "ar"
+        ? "ar"
+        : "en";
+
+    translatableElements.forEach(
       (element) => {
-        revealObserver.observe(
-          element
-        );
+
+        const text =
+          element.getAttribute(
+            `data-${selectedLanguage}`
+          );
+
+        if (text !== null) {
+          element.textContent = text;
+        }
+
       }
     );
-  };
 
 
-  /* =========================================================
-     06. ACTIVE SECTION NAVIGATION
-     ========================================================= */
+    document
+      .querySelectorAll(
+        "[data-en-placeholder][data-ar-placeholder]"
+      )
+      .forEach((element) => {
 
-  const initializeActiveNavigation =
-    () => {
-      if (
-        !sections.length ||
-        !navLinks.length ||
-        !(
-          "IntersectionObserver" in
-          window
-        )
-      ) {
-        return;
-      }
+        const placeholder =
+          element.getAttribute(
+            selectedLanguage === "ar"
+              ? "data-ar-placeholder"
+              : "data-en-placeholder"
+          );
 
-      const sectionMap = new Map();
-
-      sections.forEach(
-        (section) => {
-          const matchingLink =
-            navLinks.find(
-              (link) =>
-                link.getAttribute(
-                  "href"
-                ) ===
-                `#${section.id}`
-            );
-
-          if (matchingLink) {
-            sectionMap.set(
-              section,
-              matchingLink
-            );
-          }
-        }
-      );
-
-      if (!sectionMap.size) return;
-
-      sectionObserver =
-        new IntersectionObserver(
-          (entries) => {
-            const visibleEntries =
-              entries
-                .filter(
-                  (entry) =>
-                    entry.isIntersecting
-                )
-                .sort(
-                  (a, b) =>
-                    b.intersectionRatio -
-                    a.intersectionRatio
-                );
-
-            if (
-              !visibleEntries.length
-            ) {
-              return;
-            }
-
-            const activeSection =
-              visibleEntries[0].target;
-
-            const activeLink =
-              sectionMap.get(
-                activeSection
-              );
-
-            if (activeLink) {
-              setAriaCurrent(
-                activeLink
-              );
-            }
-          },
-          {
-            threshold: [
-              0.08,
-              0.15,
-              0.3,
-              0.5
-            ],
-
-            rootMargin:
-              CONFIG.navRootMargin
-          }
-        );
-
-      sections.forEach(
-        (section) => {
-          sectionObserver.observe(
-            section
+        if (placeholder !== null) {
+          element.setAttribute(
+            "placeholder",
+            placeholder
           );
         }
-      );
-    };
+
+      });
 
 
-  /* =========================================================
-     07. ACCESSIBLE SMOOTH ANCHOR NAVIGATION
-     ========================================================= */
-
-  const initializeAnchorNavigation =
-    () => {
-      const anchorLinks =
-        Array.from(
-          document.querySelectorAll(
-            'a[href^="#"]'
-          )
-        );
-
-      anchorLinks.forEach(
-        (link) => {
-          link.addEventListener(
-            "click",
-            (event) => {
-              const target =
-                getTargetFromLink(
-                  link
-                );
-
-              if (!target) {
-                return;
-              }
-
-              event.preventDefault();
-
-              const behavior =
-                canAnimate()
-                  ? "smooth"
-                  : "auto";
-
-              target.scrollIntoView(
-                {
-                  behavior,
-                  block: "start"
-                }
-              );
-
-              const targetId =
-                target.id;
-
-              if (targetId) {
-                try {
-                  history.replaceState(
-                    null,
-                    "",
-                    `#${targetId}`
-                  );
-                } catch {
-                  /* History API unavailable. */
-                }
-              }
-
-              if (
-                !target.hasAttribute(
-                  "tabindex"
-                )
-              ) {
-                target.setAttribute(
-                  "tabindex",
-                  "-1"
-                );
-              }
-
-              window.setTimeout(
-                () => {
-                  if (
-                    document.activeElement !==
-                      target &&
-                    typeof target.focus ===
-                      "function"
-                  ) {
-                    target.focus({
-                      preventScroll:
-                        true
-                    });
-                  }
-                },
-                canAnimate()
-                  ? 450
-                  : 0
-              );
-            }
-          );
-        }
-      );
-    };
-
-
-  /* =========================================================
-     08. EXTERNAL LINK HARDENING
-     ========================================================= */
-
-  const initializeExternalLinks =
-    () => {
-      document
-        .querySelectorAll(
-          'a[target="_blank"]'
-        )
-        .forEach((link) => {
-          link.setAttribute(
-            "rel",
-            "noopener noreferrer"
-          );
-        });
-    };
-
-
-  /* =========================================================
-     09. CONTACT FORM EXPERIENCE
-     ========================================================= */
-
-  const initializeContactForm =
-    () => {
-      if (!contactForm) return;
-
-      const submitButton =
-        contactForm.querySelector(
-          'button[type="submit"], input[type="submit"]'
-        );
-
-      if (!submitButton) return;
-
-      const originalText =
-        submitButton.textContent;
-
-      contactForm.addEventListener(
-        "submit",
-        () => {
-          submitButton.dataset.originalText =
-            originalText;
-
-          submitButton.textContent =
-            "Preparing Message…";
-
-          submitButton.setAttribute(
-            "aria-disabled",
-            "true"
-          );
-
-          submitButton.disabled = true;
-
-          /*
-           * The form may use mailto or another
-           * native browser submission method.
-           * We do not claim that a message
-           * was successfully delivered.
-           */
-
-          window.setTimeout(
-            () => {
-              if (
-                !document.contains(
-                  submitButton
-                )
-              ) {
-                return;
-              }
-
-              submitButton.disabled =
-                false;
-
-              submitButton.removeAttribute(
-                "aria-disabled"
-              );
-
-              submitButton.textContent =
-                submitButton.dataset
-                  .originalText ||
-                originalText ||
-                "Send Message";
-            },
-            2500
-          );
-        }
-      );
-    };
-
-
-  /* =========================================================
-     10. CURRENT YEAR
-     ========================================================= */
-
-  const initializeCurrentYear =
-    () => {
-      if (!yearElement) return;
-
-      yearElement.textContent =
-        String(
-          new Date().getFullYear()
-        );
-    };
-
-
-  /* =========================================================
-     11. REDUCED MOTION
-     ========================================================= */
-
-  const applyReducedMotion = () => {
-    if (
-      !prefersReducedMotion.matches
-    ) {
-      revealElements.forEach(
-        (element) => {
-          element.style.removeProperty(
-            "--reveal-delay"
-          );
-        }
-      );
-
-      return;
-    }
-
-    revealElements.forEach(
-      (element) => {
-        element.classList.add(
-          "is-visible"
-        );
-
-        element.style.setProperty(
-          "--reveal-delay",
-          "0ms"
-        );
-      }
+    htmlElement.setAttribute(
+      "lang",
+      selectedLanguage
     );
-  };
 
-  const initializeReducedMotion =
-    () => {
-      applyReducedMotion();
+    htmlElement.setAttribute(
+      "dir",
+      selectedLanguage === "ar"
+        ? "rtl"
+        : "ltr"
+    );
 
-      const changeHandler = () => {
-        applyReducedMotion();
-
-        if (
-          prefersReducedMotion.matches
-        ) {
-          revealElements.forEach(
-            (element) => {
-              element.classList.add(
-                "is-visible"
-              );
-            }
-          );
-        }
-      };
-
-      if (
-        typeof prefersReducedMotion.addEventListener ===
-        "function"
-      ) {
-        prefersReducedMotion.addEventListener(
-          "change",
-          changeHandler
-        );
-      } else if (
-        typeof prefersReducedMotion.addListener ===
-        "function"
-      ) {
-        prefersReducedMotion.addListener(
-          changeHandler
-        );
-      }
-    };
+    document.body.classList.toggle(
+      "lang-ar",
+      selectedLanguage === "ar"
+    );
 
 
-  /* =========================================================
-     12. INITIAL HASH / DEEP LINK SUPPORT
-     ========================================================= */
+    if (languageToggle) {
 
-  const handleInitialHash = () => {
-    const hash =
-      window.location.hash;
+      languageToggle.textContent =
+        selectedLanguage === "ar"
+          ? "EN"
+          : "AR";
 
-    if (!hash || hash === "#") {
-      return;
+      languageToggle.setAttribute(
+        "aria-label",
+        selectedLanguage === "ar"
+          ? "Switch to English"
+          : "Switch to Arabic"
+      );
+
     }
 
-    let target = null;
 
     try {
-      target =
-        document.querySelector(hash);
-    } catch {
-      return;
+      localStorage.setItem(
+        "emeriona-language",
+        selectedLanguage
+      );
+    } catch (error) {
+      /* Local storage may be unavailable. */
     }
 
-    if (!target) return;
+  }
 
-    window.setTimeout(() => {
-      target.scrollIntoView({
-        behavior: "auto",
-        block: "start"
-      });
-    }, 0);
-  };
+
+  if (languageToggle) {
+
+    languageToggle.addEventListener(
+      "click",
+      () => {
+
+        const currentLanguage =
+          htmlElement.getAttribute("lang") ||
+          "en";
+
+        applyLanguage(
+          currentLanguage === "ar"
+            ? "en"
+            : "ar"
+        );
+
+      }
+    );
+
+  }
 
 
   /* =========================================================
-     13. PAGE INITIALIZATION
-     ========================================================= */
+     INITIAL LANGUAGE
+  ========================================================= */
 
-  initializeNavigation();
+  let savedLanguage = "en";
 
-  initializeHeader();
+  try {
 
-  initializeRevealSystem();
+    const storedLanguage =
+      localStorage.getItem(
+        "emeriona-language"
+      );
 
-  initializeActiveNavigation();
+    if (
+      storedLanguage === "ar" ||
+      storedLanguage === "en"
+    ) {
+      savedLanguage = storedLanguage;
+    }
 
-  initializeAnchorNavigation();
+  } catch (error) {
+    /* Use English when storage is unavailable. */
+  }
 
-  initializeExternalLinks();
+  applyLanguage(savedLanguage);
 
-  initializeContactForm();
 
-  initializeCurrentYear();
+  /* =========================================================
+     CLOSE MOBILE NAV ON ESCAPE
+  ========================================================= */
 
-  initializeReducedMotion();
+  document.addEventListener(
+    "keydown",
+    (event) => {
 
-  documentElement.classList.add(
-    "js-ready"
+      if (
+        event.key === "Escape" &&
+        mainNav &&
+        mainNav.classList.contains("open")
+      ) {
+
+        mainNav.classList.remove("open");
+
+        if (menuToggle) {
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuToggle.setAttribute(
+            "aria-label",
+            "Open navigation"
+          );
+
+          menuToggle.focus();
+
+        }
+
+      }
+
+    }
   );
 
-  handleInitialHash();
+
+  /* =========================================================
+     CONTACT FORM
+  ========================================================= */
+
+  const contactForm =
+    document.querySelector(
+      ".contact form"
+    );
+
+  if (contactForm) {
+
+    contactForm.addEventListener(
+      "submit",
+      (event) => {
+
+        const formData =
+          new FormData(contactForm);
+
+        const name =
+          formData.get("name") || "";
+
+        const email =
+          formData.get("email") || "";
+
+        const organization =
+          formData.get("organization") || "";
+
+        const purpose =
+          formData.get("purpose") || "";
+
+        const message =
+          formData.get("message") || "";
+
+
+        const subject =
+          `EMERIONA Global — ${purpose}`;
+
+
+        const body =
+          [
+            `Name: ${name}`,
+            `Email: ${email}`,
+            `Organization / Company: ${organization}`,
+            `Purpose: ${purpose}`,
+            "",
+            "Message:",
+            message
+          ].join("\n");
+
+
+        /*
+         * We intentionally use mailto here because
+         * the website is static and does not currently
+         * have a server-side form-processing service.
+         */
+
+        const mailto =
+          "mailto:emeriona.global@gmail.com" +
+          `?subject=${encodeURIComponent(subject)}` +
+          `&body=${encodeURIComponent(body)}`;
+
+
+        event.preventDefault();
+
+        window.location.href = mailto;
+
+      }
+    );
+
+  }
+
 });

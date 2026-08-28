@@ -1,149 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
 
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    EMERIONA GLOBAL | Empowerment, Innovation & Impact
+  </title>
+
+  <meta
+    name="description"
+    content="EMERIONA GLOBAL is a global ecosystem focused on empowering people, advancing ideas, developing solutions, and creating meaningful impact."
+  >
+
+  <meta
+    name="keywords"
+    content="EMERIONA GLOBAL, empowerment, innovation, impact, digital ecosystem, technology, AI, leadership, development, knowledge"
+  >
+
+  <meta
+    name="author"
+    content="EMERIONA GLOBAL"
+  >
+
+  <meta
+    name="robots"
+    content="index, follow"
+  >
+
+  <meta
+    name="theme-color"
+    content="#07111f"
+  >
+
+  <!-- Open Graph -->
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:title"
+    content="EMERIONA GLOBAL | Empowerment, Innovation & Impact"
+  >
+
+  <meta
+    property="og:description"
+    content="A Global Ecosystem for Empowerment, Innovation & Impact."
+  >
+
+  <meta
+    property="og:image"
+    content="assets/covers/emeriona-global-cover-en.png"
+  >
+
+  <meta
+    property="og:site_name"
+    content="EMERIONA GLOBAL"
+  >
+
+  <!-- Twitter / X -->
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="EMERIONA GLOBAL | Empowerment, Innovation & Impact"
+  >
+
+  <meta
+    name="twitter:description"
+    content="A Global Ecosystem for Empowerment, Innovation & Impact."
+  >
+
+  <meta
+    name="twitter:image"
+    content="assets/covers/emeriona-global-cover-en.png"
+  >
+
+  <!-- Canonical -->
+  <link
+    rel="canonical"
+    href="https://emeriona.github.io/emeriona-website/"
+  >
+
+  <!-- Stylesheet -->
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="site-header">
+
+    <div class="container nav-container">
+
+      <a
+        class="logo"
+        href="#top"
+        aria-label="EMERIONA GLOBAL home"
+      >
+        <img
+          src="assets/logo/emeriona-logo.png"
+          alt="EMERIONA GLOBAL"
+          width="160"
+          height="auto"
+        >
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
         aria-label="Open navigation"
         aria-expanded="false"
+        aria-controls="main-navigation"
       >
         ☰
       </button>
 
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#ecosystem">Ecosystem</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#innovation">Innovation</a>
-        <a href="#knowledge">Knowledge</a>
-        <a href="#impact">Impact</a>
-        <a href="#contact">Contact</a>
+      <nav
+        id="main-navigation"
+        class="main-nav"
+        aria-label="Main navigation"
+      >
+
+        <a href="#about" data-i18n="nav.about">
+          About
+        </a>
+
+        <a href="#ecosystem" data-i18n="nav.ecosystem">
+          Ecosystem
+        </a>
+
+        <a href="#solutions" data-i18n="nav.solutions">
+          Solutions
+        </a>
+
+        <a href="#innovation" data-i18n="nav.innovation">
+          Innovation
+        </a>
+
+        <a href="#knowledge" data-i18n="nav.knowledge">
+          Knowledge
+        </a>
+
+        <a href="#impact" data-i18n="nav.impact">
+          Impact
+        </a>
+
+        <a href="#method" data-i18n="nav.method">
+          Method
+        </a>
+
+        <a href="#contact" data-i18n="nav.contact">
+          Contact
+        </a>
+
+        <button
+          class="language-toggle"
+          type="button"
+          id="language-toggle"
+          aria-label="Switch language"
+          aria-live="polite"
+        >
+          <span class="language-current">AR</span>
+        </button>
+
       </nav>
 
     </div>
+
   </header>
+
 
   <main id="top">
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-      <div class="hero-media" aria-hidden="true">
+    <section
+      class="hero"
+      aria-labelledby="hero-title"
+    >
+
+      <div
+        class="hero-media"
+        aria-hidden="true"
+      >
+
         <picture>
+
           <source
             media="(max-width: 700px)"
             srcset="assets/covers/emeriona-global-cover-en.png"
           >
+
           <img
             src="assets/covers/emeriona-global-cover-en.png"
             alt=""
             fetchpriority="high"
             decoding="async"
           >
+
         </picture>
+
       </div>
 
-      <div class="hero-overlay" aria-hidden="true"></div>
+      <div
+        class="hero-overlay"
+        aria-hidden="true"
+      ></div>
 
-      <div class="hero-orbit orbit-one"></div>
-      <div class="hero-orbit orbit-two"></div>
+      <div
+        class="hero-orbit orbit-one"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="hero-orbit orbit-two"
+        aria-hidden="true"
+      ></div>
 
       <div class="container hero-content">
 
-        <p class="eyebrow">EMERIONA GLOBAL</p>
+        <p
+          class="eyebrow"
+          data-i18n="hero.eyebrow"
+        >
+          EMERIONA GLOBAL
+        </p>
 
         <h1 id="hero-title">
-          Empowering People.<br>
-          <span>Elevating Ideas.</span><br>
-          Creating Impact.
+
+          <span
+            class="hero-line"
+            data-i18n="hero.line1"
+          >
+            Empowering People.
+          </span>
+
+          <br>
+
+          <span
+            class="hero-highlight"
+            data-i18n="hero.line2"
+          >
+            Elevating Ideas.
+          </span>
+
+          <br>
+
+          <span
+            class="hero-line"
+            data-i18n="hero.line3"
+          >
+            Creating Impact.
+          </span>
+
         </h1>
 
-        <p class="hero-description">
-          A global digital enterprise and evolving ecosystem connecting
-          people, knowledge, technology, innovation, and opportunities
-          to create meaningful value and lasting impact.
+        <p
+          class="hero-positioning"
+          data-i18n="hero.positioning"
+        >
+          A Global Ecosystem for Empowerment, Innovation & Impact
+        </p>
+
+        <p
+          class="hero-description"
+          data-i18n="hero.description"
+        >
+          EMERIONA GLOBAL is a global ecosystem focused on empowering
+          people, advancing ideas, developing solutions, and creating
+          meaningful impact.
         </p>
 
         <div class="hero-actions">
-          <a href="#ecosystem" class="btn btn-primary">
+
+          <a
+            href="#ecosystem"
+            class="btn btn-primary"
+            data-i18n="hero.explore"
+          >
             Explore EMERIONA
           </a>
 
-          <a href="#contact" class="btn btn-secondary">
+          <a
+            href="#contact"
+            class="btn btn-secondary"
+            data-i18n="hero.build"
+          >
             Build With Us
           </a>
+
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- FOUNDATION -->
+    <!-- =========================
+         FOUNDATION
+    ========================== -->
+
     <section class="values">
 
       <div class="container">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">OUR FOUNDATION</p>
-          <h2>Empowerment • Elevation • Impact</h2>
+
+          <p
+            class="eyebrow"
+            data-i18n="foundation.eyebrow"
+          >
+            OUR FOUNDATION
+          </p>
+
+          <h2
+            data-i18n="foundation.title"
+          >
+            Empowerment • Elevation • Impact
+          </h2>
+
         </div>
 
         <div class="values-grid">
 
           <article class="value-card reveal">
-            <span class="card-number">01</span>
-            <h3>Empowerment</h3>
-            <p>
+
+            <span class="card-number">
+              01
+            </span>
+
+            <h3 data-i18n="foundation.empowerment.title">
+              Empowerment
+            </h3>
+
+            <p data-i18n="foundation.empowerment.text">
               Creating opportunities that enable people and ideas
               to move forward.
             </p>
+
           </article>
 
+
           <article class="value-card reveal">
-            <span class="card-number">02</span>
-            <h3>Elevation</h3>
-            <p>
+
+            <span class="card-number">
+              02
+            </span>
+
+            <h3 data-i18n="foundation.elevation.title">
+              Elevation
+            </h3>
+
+            <p data-i18n="foundation.elevation.text">
               Elevating leadership, knowledge, innovation,
               and human potential.
             </p>
+
           </article>
 
+
           <article class="value-card reveal">
-            <span class="card-number">03</span>
-            <h3>Impact</h3>
-            <p>
+
+            <span class="card-number">
+              03
+            </span>
+
+            <h3 data-i18n="foundation.impact.title">
+              Impact
+            </h3>
+
+            <p data-i18n="foundation.impact.text">
               Turning knowledge, technology, and innovation
               into meaningful change.
             </p>
+
           </article>
 
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section
+      id="about"
+      class="section"
+    >
 
       <div class="container two-column">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">ABOUT EMERIONA</p>
-          <h2>A Global Ecosystem Built Around Possibility</h2>
+
+          <p
+            class="eyebrow"
+            data-i18n="about.eyebrow"
+          >
+            ABOUT EMERIONA
+          </p>
+
+          <h2 data-i18n="about.title">
+            A Global Ecosystem Built Around Possibility
+          </h2>
+
         </div>
 
         <div class="content-block reveal">
 
-          <p>
-            EMERIONA Global is a digital enterprise and evolving
-            global ecosystem focused on empowering people,
-            advancing ideas, developing solutions, and creating
-            meaningful impact.
+          <p data-i18n="about.p1">
+            EMERIONA GLOBAL is a global ecosystem focused on
+            empowering people, advancing ideas, developing
+            solutions, and creating meaningful impact.
           </p>
 
-          <p>
+          <p data-i18n="about.p2">
             We bring together people, knowledge, technology,
-            innovation, and opportunities to transform possibilities
-            into practical outcomes.
+            innovation, and opportunities to transform
+            possibilities into practical outcomes.
           </p>
 
-          <p>
+          <p data-i18n="about.p3">
             EMERIONA is being built for the long term: an adaptable
             ecosystem capable of entering new fields, creating
             specialized entities, launching platforms, developing
@@ -154,189 +453,332 @@
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- ECOSYSTEM -->
-    <section id="ecosystem" class="section section-dark">
+    <!-- =========================
+         ECOSYSTEM
+    ========================== -->
+
+    <section
+      id="ecosystem"
+      class="section section-dark"
+    >
 
       <div class="container">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">THE ECOSYSTEM</p>
-          <h2>One Ecosystem. Many Possibilities.</h2>
-          <p>These domains are foundations — not boundaries.</p>
+
+          <p
+            class="eyebrow"
+            data-i18n="ecosystem.eyebrow"
+          >
+            THE ECOSYSTEM
+          </p>
+
+          <h2 data-i18n="ecosystem.title">
+            One Ecosystem. Many Possibilities.
+          </h2>
+
+          <p data-i18n="ecosystem.intro">
+            These domains are foundations — not boundaries.
+          </p>
+
         </div>
 
         <div class="pillars-grid">
 
           <article class="pillar reveal">
+
             <span>01</span>
-            <h3>Leadership</h3>
-            <p>
+
+            <h3 data-i18n="ecosystem.leadership.title">
+              Leadership
+            </h3>
+
+            <p data-i18n="ecosystem.leadership.text">
               Developing leadership, capability, vision,
               and responsible action.
             </p>
+
           </article>
 
+
           <article class="pillar reveal">
+
             <span>02</span>
-            <h3>Humanity</h3>
-            <p>
+
+            <h3 data-i18n="ecosystem.humanity.title">
+              Humanity
+            </h3>
+
+            <p data-i18n="ecosystem.humanity.text">
               Supporting human potential, inclusion,
               resilience, and opportunity.
             </p>
+
           </article>
 
+
           <article class="pillar reveal">
+
             <span>03</span>
-            <h3>Development</h3>
-            <p>
+
+            <h3 data-i18n="ecosystem.development.title">
+              Development
+            </h3>
+
+            <p data-i18n="ecosystem.development.text">
               Creating practical approaches that contribute
               to sustainable progress.
             </p>
+
           </article>
 
+
           <article class="pillar reveal">
+
             <span>04</span>
-            <h3>Culture</h3>
-            <p>
+
+            <h3 data-i18n="ecosystem.culture.title">
+              Culture
+            </h3>
+
+            <p data-i18n="ecosystem.culture.text">
               Connecting knowledge, creativity, identity,
               and human expression.
             </p>
+
           </article>
 
+
           <article class="pillar reveal">
+
             <span>05</span>
-            <h3>Science</h3>
-            <p>
+
+            <h3 data-i18n="ecosystem.science.title">
+              Science
+            </h3>
+
+            <p data-i18n="ecosystem.science.text">
               Exploring knowledge, research, evidence,
               and new possibilities.
             </p>
+
           </article>
 
+
           <article class="pillar reveal">
+
             <span>06</span>
-            <h3>Technology</h3>
-            <p>
+
+            <h3 data-i18n="ecosystem.technology.title">
+              Technology
+            </h3>
+
+            <p data-i18n="ecosystem.technology.text">
               Using digital systems and AI to accelerate
               innovation and impact.
             </p>
+
           </article>
 
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- SOLUTIONS -->
-    <section id="solutions" class="section">
+    <!-- =========================
+         SOLUTIONS
+    ========================== -->
+
+    <section
+      id="solutions"
+      class="section"
+    >
 
       <div class="container">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">SOLUTIONS</p>
-          <h2>Built Around Real Needs</h2>
-          <p>
+
+          <p
+            class="eyebrow"
+            data-i18n="solutions.eyebrow"
+          >
+            SOLUTIONS
+          </p>
+
+          <h2 data-i18n="solutions.title">
+            Built Around Real Needs
+          </h2>
+
+          <p data-i18n="solutions.intro">
             We explore the challenge, understand the opportunity,
             and develop the most appropriate product, service,
             technology, or solution.
           </p>
+
         </div>
 
         <div class="solutions-grid">
 
           <article class="solution-card reveal">
-            <h3>Digital Products</h3>
-            <p>
+
+            <h3 data-i18n="solutions.digitalProducts.title">
+              Digital Products
+            </h3>
+
+            <p data-i18n="solutions.digitalProducts.text">
               Products designed around real needs and meaningful
               user experiences.
             </p>
+
           </article>
 
+
           <article class="solution-card reveal">
-            <h3>Digital Services</h3>
-            <p>
+
+            <h3 data-i18n="solutions.digitalServices.title">
+              Digital Services
+            </h3>
+
+            <p data-i18n="solutions.digitalServices.text">
               Practical services helping individuals and
               organizations operate, grow, and move forward.
             </p>
+
           </article>
 
+
           <article class="solution-card reveal">
-            <h3>Technology &amp; Innovation</h3>
-            <p>
+
+            <h3 data-i18n="solutions.technology.title">
+              Technology &amp; Innovation
+            </h3>
+
+            <p data-i18n="solutions.technology.text">
               Technology-driven solutions that transform ideas
               into useful outcomes.
             </p>
+
           </article>
 
+
           <article class="solution-card reveal">
-            <h3>AI &amp; Intelligent Solutions</h3>
-            <p>
+
+            <h3 data-i18n="solutions.ai.title">
+              AI &amp; Intelligent Solutions
+            </h3>
+
+            <p data-i18n="solutions.ai.text">
               AI-powered systems developed with responsible
               human oversight.
             </p>
+
           </article>
 
+
           <article class="solution-card reveal">
-            <h3>Digital Platforms</h3>
-            <p>
+
+            <h3 data-i18n="solutions.platforms.title">
+              Digital Platforms
+            </h3>
+
+            <p data-i18n="solutions.platforms.text">
               Platforms connecting people, services, knowledge,
               opportunities, and experiences.
             </p>
+
           </article>
 
+
           <article class="solution-card reveal">
-            <h3>Knowledge Solutions</h3>
-            <p>
+
+            <h3 data-i18n="solutions.knowledge.title">
+              Knowledge Solutions
+            </h3>
+
+            <p data-i18n="solutions.knowledge.text">
               Research, content, learning, insights,
               and knowledge-based products.
             </p>
+
           </article>
 
+
           <article class="solution-card reveal">
-            <h3>Custom Solutions</h3>
-            <p>
+
+            <h3 data-i18n="solutions.custom.title">
+              Custom Solutions
+            </h3>
+
+            <p data-i18n="solutions.custom.text">
               Tailored solutions developed around specific
               organizational or market needs.
             </p>
+
           </article>
 
+
           <article class="solution-card reveal">
-            <h3>Future Products &amp; Ventures</h3>
-            <p>
+
+            <h3 data-i18n="solutions.future.title">
+              Future Products &amp; Ventures
+            </h3>
+
+            <p data-i18n="solutions.future.text">
               New products, platforms, businesses, and ventures
               emerging from the ecosystem.
             </p>
+
           </article>
 
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- INNOVATION -->
-    <section id="innovation" class="section section-soft">
+    <!-- =========================
+         INNOVATION
+    ========================== -->
+
+    <section
+      id="innovation"
+      class="section section-soft"
+    >
 
       <div class="container two-column">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">INNOVATION</p>
-          <h2>Ideas Are Where Possibilities Begin</h2>
+
+          <p
+            class="eyebrow"
+            data-i18n="innovation.eyebrow"
+          >
+            INNOVATION
+          </p>
+
+          <h2 data-i18n="innovation.title">
+            Ideas Are Where Possibilities Begin
+          </h2>
+
         </div>
 
         <div class="content-block reveal">
 
-          <p>
+          <p data-i18n="innovation.p1">
             Innovation at EMERIONA is not limited to technology.
             It is the continuous process of discovering better ways
             to solve problems, create value, improve experiences,
             and open new possibilities.
           </p>
 
-          <p>
+          <p data-i18n="innovation.p2">
             We explore emerging technologies, new business models,
             digital experiences, research, creative thinking, and
             ideas capable of becoming meaningful products, services,
@@ -346,94 +788,166 @@
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- KNOWLEDGE -->
-    <section id="knowledge" class="section">
+    <!-- =========================
+         KNOWLEDGE
+    ========================== -->
+
+    <section
+      id="knowledge"
+      class="section"
+    >
 
       <div class="container">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">EMERIONA KNOWLEDGE</p>
-          <h2>Knowledge That Moves Forward</h2>
-          <p>
+
+          <p
+            class="eyebrow"
+            data-i18n="knowledge.eyebrow"
+          >
+            EMERIONA KNOWLEDGE
+          </p>
+
+          <h2 data-i18n="knowledge.title">
+            Knowledge That Moves Forward
+          </h2>
+
+          <p data-i18n="knowledge.intro">
             An evolving knowledge environment connecting ideas,
             research, insights, experience, and innovation.
           </p>
+
         </div>
 
         <div class="knowledge-grid">
 
           <div class="knowledge-item reveal">
-            <b>Insights</b>
-            <span>Emerging ideas, trends, and opportunities.</span>
+
+            <b data-i18n="knowledge.insights.title">
+              Insights
+            </b>
+
+            <span data-i18n="knowledge.insights.text">
+              Emerging ideas, trends, and opportunities.
+            </span>
+
           </div>
 
+
           <div class="knowledge-item reveal">
-            <b>Articles</b>
-            <span>
+
+            <b data-i18n="knowledge.articles.title">
+              Articles
+            </b>
+
+            <span data-i18n="knowledge.articles.text">
               Leadership, technology, development,
               culture, and innovation.
             </span>
+
           </div>
 
+
           <div class="knowledge-item reveal">
-            <b>Research</b>
-            <span>
+
+            <b data-i18n="knowledge.research.title">
+              Research
+            </b>
+
+            <span data-i18n="knowledge.research.text">
               Evidence exploring important questions
               and possibilities.
             </span>
+
           </div>
 
+
           <div class="knowledge-item reveal">
-            <b>Reports</b>
-            <span>
+
+            <b data-i18n="knowledge.reports.title">
+              Reports
+            </b>
+
+            <span data-i18n="knowledge.reports.text">
               Structured analysis, findings,
               and knowledge resources.
             </span>
+
           </div>
 
+
           <div class="knowledge-item reveal">
-            <b>Publications</b>
-            <span>
+
+            <b data-i18n="knowledge.publications.title">
+              Publications
+            </b>
+
+            <span data-i18n="knowledge.publications.text">
               Original EMERIONA knowledge products.
             </span>
+
           </div>
 
+
           <div class="knowledge-item reveal">
-            <b>Perspectives</b>
-            <span>
+
+            <b data-i18n="knowledge.perspectives.title">
+              Perspectives
+            </b>
+
+            <span data-i18n="knowledge.perspectives.text">
               Ideas and viewpoints shaping the ecosystem.
             </span>
+
           </div>
 
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- IMPACT INTELLIGENCE -->
-    <section id="impact" class="section section-dark">
+    <!-- =========================
+         IMPACT INTELLIGENCE
+    ========================== -->
+
+    <section
+      id="impact"
+      class="section section-dark"
+    >
 
       <div class="container impact-block">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">IMPACT INTELLIGENCE</p>
-          <h2>From Activity to Meaningful Change</h2>
+
+          <p
+            class="eyebrow"
+            data-i18n="impact.eyebrow"
+          >
+            IMPACT INTELLIGENCE
+          </p>
+
+          <h2 data-i18n="impact.title">
+            From Activity to Meaningful Change
+          </h2>
+
         </div>
 
         <div class="content-block reveal">
 
-          <p>
+          <p data-i18n="impact.p1">
             Impact is at the heart of the EMERIONA philosophy.
             We seek to understand not only what we create,
             but why it matters, who it serves, what changes,
             and how that change can be measured and improved.
           </p>
 
-          <p>
+          <p data-i18n="impact.p2">
             Over time, EMERIONA will develop its own impact
             intelligence capabilities to connect data, evidence,
             insights, and decision-making.
@@ -442,57 +956,325 @@
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- DIGITAL FACTORY -->
+    <!-- =========================
+         OUR METHOD
+    ========================== -->
+
+    <section
+      id="method"
+      class="section method"
+    >
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <p
+            class="eyebrow"
+            data-i18n="method.eyebrow"
+          >
+            OUR METHOD
+          </p>
+
+          <h2 data-i18n="method.title">
+            From Possibility to Practical Outcome
+          </h2>
+
+          <p data-i18n="method.intro">
+            A disciplined, adaptable approach for transforming
+            ideas and opportunities into meaningful outcomes.
+          </p>
+
+        </div>
+
+        <div class="method-grid">
+
+          <article class="method-card reveal">
+
+            <span>01</span>
+
+            <h3 data-i18n="method.discover.title">
+              Discover
+            </h3>
+
+            <p data-i18n="method.discover.text">
+              Understand needs, challenges, opportunities,
+              people, and context.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>02</span>
+
+            <h3 data-i18n="method.research.title">
+              Research
+            </h3>
+
+            <p data-i18n="method.research.text">
+              Explore evidence, knowledge, markets,
+              technologies, and possibilities.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>03</span>
+
+            <h3 data-i18n="method.validate.title">
+              Validate
+            </h3>
+
+            <p data-i18n="method.validate.text">
+              Test assumptions, feasibility, relevance,
+              value, and potential.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>04</span>
+
+            <h3 data-i18n="method.design.title">
+              Design
+            </h3>
+
+            <p data-i18n="method.design.text">
+              Shape the experience, model, architecture,
+              and solution.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>05</span>
+
+            <h3 data-i18n="method.build.title">
+              Build
+            </h3>
+
+            <p data-i18n="method.build.text">
+              Develop the product, service, platform,
+              system, or initiative.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>06</span>
+
+            <h3 data-i18n="method.test.title">
+              Test
+            </h3>
+
+            <p data-i18n="method.test.text">
+              Evaluate quality, usability, performance,
+              safety, and readiness.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>07</span>
+
+            <h3 data-i18n="method.launch.title">
+              Launch
+            </h3>
+
+            <p data-i18n="method.launch.text">
+              Introduce the solution to its intended
+              users, market, or community.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>08</span>
+
+            <h3 data-i18n="method.grow.title">
+              Grow
+            </h3>
+
+            <p data-i18n="method.grow.text">
+              Improve reach, capability, adoption,
+              partnerships, and value.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>09</span>
+
+            <h3 data-i18n="method.support.title">
+              Support
+            </h3>
+
+            <p data-i18n="method.support.text">
+              Sustain users, operations, relationships,
+              quality, and continuous service.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>10</span>
+
+            <h3 data-i18n="method.measure.title">
+              Measure
+            </h3>
+
+            <p data-i18n="method.measure.text">
+              Track performance, outcomes, evidence,
+              learning, and impact.
+            </p>
+
+          </article>
+
+
+          <article class="method-card reveal">
+
+            <span>11</span>
+
+            <h3 data-i18n="method.improve.title">
+              Improve
+            </h3>
+
+            <p data-i18n="method.improve.text">
+              Learn from evidence and continuously
+              improve what we create.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DIGITAL FACTORY
+    ========================== -->
+
     <section class="section factory">
 
       <div class="container">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">EMERIONA DIGITAL FACTORY</p>
-          <h2>From Idea to Reality</h2>
-          <p>
+
+          <p
+            class="eyebrow"
+            data-i18n="factory.eyebrow"
+          >
+            EMERIONA DIGITAL FACTORY
+          </p>
+
+          <h2 data-i18n="factory.title">
+            From Idea to Reality
+          </h2>
+
+          <p data-i18n="factory.intro">
             Our long-term approach to turning ideas into
             real-world products, services, and ventures.
           </p>
+
         </div>
 
         <div class="process reveal">
 
-          <span>Discover</span>
+          <span data-i18n="process.discover">
+            Discover
+          </span>
+
           <i>→</i>
 
-          <span>Research</span>
+          <span data-i18n="process.research">
+            Research
+          </span>
+
           <i>→</i>
 
-          <span>Validate</span>
+          <span data-i18n="process.validate">
+            Validate
+          </span>
+
           <i>→</i>
 
-          <span>Design</span>
+          <span data-i18n="process.design">
+            Design
+          </span>
+
           <i>→</i>
 
-          <span>Build</span>
+          <span data-i18n="process.build">
+            Build
+          </span>
+
           <i>→</i>
 
-          <span>Test</span>
+          <span data-i18n="process.test">
+            Test
+          </span>
+
           <i>→</i>
 
-          <span>Launch</span>
+          <span data-i18n="process.launch">
+            Launch
+          </span>
+
           <i>→</i>
 
-          <span>Grow</span>
+          <span data-i18n="process.grow">
+            Grow
+          </span>
+
           <i>→</i>
 
-          <span>Measure</span>
+          <span data-i18n="process.support">
+            Support
+          </span>
+
           <i>→</i>
 
-          <span>Improve</span>
+          <span data-i18n="process.measure">
+            Measure
+          </span>
+
+          <i>→</i>
+
+          <span data-i18n="process.improve">
+            Improve
+          </span>
 
         </div>
 
-        <p class="factory-note reveal">
+        <p
+          class="factory-note reveal"
+          data-i18n="factory.note"
+        >
           AI, automation, data, and intelligent systems can support
           the journey where appropriate — while strategic direction,
           governance, quality, and final accountability remain
@@ -500,60 +1282,92 @@
         </p>
 
       </div>
+
     </section>
 
 
-    <!-- PARTNERSHIPS -->
+    <!-- =========================
+         PARTNERSHIPS
+    ========================== -->
+
     <section class="section opportunities">
 
       <div class="container two-column">
 
         <div class="section-heading reveal">
-          <p class="eyebrow">PARTNERSHIPS &amp; OPPORTUNITIES</p>
-          <h2>Build With Us</h2>
+
+          <p
+            class="eyebrow"
+            data-i18n="partnerships.eyebrow"
+          >
+            PARTNERSHIPS &amp; OPPORTUNITIES
+          </p>
+
+          <h2 data-i18n="partnerships.title">
+            Build With Us
+          </h2>
+
         </div>
 
         <div class="content-block reveal">
 
-          <p>
+          <p data-i18n="partnerships.p1">
             The future is built through meaningful collaboration.
           </p>
 
-          <p>
+          <p data-i18n="partnerships.p2">
             We welcome organizations, businesses, institutions,
             entrepreneurs, innovators, researchers, creators,
             strategic partners, and communities.
           </p>
 
-          <p>
+          <p data-i18n="partnerships.p3">
             Whether the opportunity involves a product, service,
             technology, research, project, investment, partnership,
             or new idea — we are open to exploring what can be
             built together.
           </p>
 
-          <a href="#contact" class="text-link">
+          <a
+            href="#contact"
+            class="text-link"
+            data-i18n="partnerships.link"
+          >
             Start a conversation →
           </a>
 
         </div>
 
       </div>
+
     </section>
 
 
-    <!-- CONTACT -->
-    <section id="contact" class="section contact">
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section
+      id="contact"
+      class="section contact"
+    >
 
       <div class="container">
 
         <div class="section-heading reveal">
 
-          <p class="eyebrow">CONNECT WITH EMERIONA</p>
+          <p
+            class="eyebrow"
+            data-i18n="contact.eyebrow"
+          >
+            CONNECT WITH EMERIONA
+          </p>
 
-          <h2>Let's Start a Conversation</h2>
+          <h2 data-i18n="contact.title">
+            Let's Start a Conversation
+          </h2>
 
-          <p>
+          <p data-i18n="contact.intro">
             Have an idea, need, challenge, project, product or
             service request, partnership opportunity, or simply
             want to learn more?
@@ -567,27 +1381,50 @@
             class="contact-card reveal"
             href="mailto:emeriona.global@gmail.com"
           >
-            <span>Email</span>
-            <strong>emeriona.global@gmail.com</strong>
-            <small>Email EMERIONA →</small>
+
+            <span data-i18n="contact.email.label">
+              Email
+            </span>
+
+            <strong>
+              emeriona.global@gmail.com
+            </strong>
+
+            <small data-i18n="contact.email.action">
+              Email EMERIONA →
+            </small>
+
           </a>
+
 
           <a
             class="contact-card reveal"
             href="https://wa.me/967737445680?text=Hello%20EMERIONA%20Global%2C%20I%20would%20like%20to%20start%20a%20conversation."
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
-            <span>WhatsApp</span>
-            <strong>+967 737 445 680</strong>
-            <small>WhatsApp EMERIONA →</small>
+
+            <span data-i18n="contact.whatsapp.label">
+              WhatsApp
+            </span>
+
+            <strong>
+              +967 737 445 680
+            </strong>
+
+            <small data-i18n="contact.whatsapp.action">
+              WhatsApp EMERIONA →
+            </small>
+
           </a>
 
         </div>
 
+
         <div class="contact-form-wrap reveal">
 
           <form
+            id="contact-form"
             action="mailto:emeriona.global@gmail.com"
             method="post"
             enctype="text/plain"
@@ -596,48 +1433,142 @@
             <div class="form-grid">
 
               <label>
-                Full Name
-                <input type="text" name="name" required>
+
+                <span data-i18n="form.name.label">
+                  Full Name
+                </span>
+
+                <input
+                  type="text"
+                  name="name"
+                  autocomplete="name"
+                  required
+                >
+
               </label>
 
-              <label>
-                Email
-                <input type="email" name="email" required>
-              </label>
 
               <label>
-                Organization / Company
-                <input type="text" name="organization">
+
+                <span data-i18n="form.email.label">
+                  Email
+                </span>
+
+                <input
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  required
+                >
+
               </label>
 
+
               <label>
-                Purpose
+
+                <span data-i18n="form.organization.label">
+                  Organization / Company
+                </span>
+
+                <input
+                  type="text"
+                  name="organization"
+                  autocomplete="organization"
+                >
+
+              </label>
+
+
+              <label>
+
+                <span data-i18n="form.purpose.label">
+                  Purpose
+                </span>
+
                 <select name="purpose">
-                  <option>General Inquiry</option>
-                  <option>Product</option>
-                  <option>Service</option>
-                  <option>Partnership</option>
-                  <option>Project</option>
-                  <option>Collaboration</option>
-                  <option>Media</option>
-                  <option>Other</option>
+
+                  <option
+                    value="General Inquiry"
+                    data-i18n="form.purpose.general"
+                  >
+                    General Inquiry
+                  </option>
+
+                  <option
+                    value="Product"
+                    data-i18n="form.purpose.product"
+                  >
+                    Product
+                  </option>
+
+                  <option
+                    value="Service"
+                    data-i18n="form.purpose.service"
+                  >
+                    Service
+                  </option>
+
+                  <option
+                    value="Partnership"
+                    data-i18n="form.purpose.partnership"
+                  >
+                    Partnership
+                  </option>
+
+                  <option
+                    value="Project"
+                    data-i18n="form.purpose.project"
+                  >
+                    Project
+                  </option>
+
+                  <option
+                    value="Collaboration"
+                    data-i18n="form.purpose.collaboration"
+                  >
+                    Collaboration
+                  </option>
+
+                  <option
+                    value="Media"
+                    data-i18n="form.purpose.media"
+                  >
+                    Media
+                  </option>
+
+                  <option
+                    value="Other"
+                    data-i18n="form.purpose.other"
+                  >
+                    Other
+                  </option>
+
                 </select>
+
               </label>
 
             </div>
 
+
             <label>
-              Message
+
+              <span data-i18n="form.message.label">
+                Message
+              </span>
+
               <textarea
                 name="message"
                 rows="6"
                 required
               ></textarea>
+
             </label>
+
 
             <button
               class="btn btn-primary"
               type="submit"
+              data-i18n="form.submit"
             >
               Send Message
             </button>
@@ -647,12 +1578,16 @@
         </div>
 
       </div>
+
     </section>
 
   </main>
 
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer class="site-footer">
 
     <div class="container footer-grid">
@@ -662,52 +1597,97 @@
         <a
           class="footer-logo"
           href="#top"
-          aria-label="EMERIONA Global"
+          aria-label="EMERIONA GLOBAL"
         >
+
           <img
             src="assets/logo/emeriona-logo.png"
-            alt="EMERIONA Global logo"
+            alt="EMERIONA GLOBAL logo"
             width="160"
             height="auto"
             loading="lazy"
             decoding="async"
           >
+
         </a>
 
-        <p>
+        <p data-i18n="footer.tagline">
           Empowering People. Elevating Ideas. Creating Impact.
         </p>
 
       </div>
 
+
       <div>
 
-        <h4>Explore</h4>
+        <h4 data-i18n="footer.explore">
+          Explore
+        </h4>
 
-        <a href="#about">About</a>
-        <a href="#ecosystem">Ecosystem</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#knowledge">Knowledge</a>
+        <a
+          href="#about"
+          data-i18n="nav.about"
+        >
+          About
+        </a>
+
+        <a
+          href="#ecosystem"
+          data-i18n="nav.ecosystem"
+        >
+          Ecosystem
+        </a>
+
+        <a
+          href="#solutions"
+          data-i18n="nav.solutions"
+        >
+          Solutions
+        </a>
+
+        <a
+          href="#knowledge"
+          data-i18n="nav.knowledge"
+        >
+          Knowledge
+        </a>
+
+        <a
+          href="#method"
+          data-i18n="nav.method"
+        >
+          Method
+        </a>
 
       </div>
 
+
       <div>
 
-        <h4>Connect</h4>
+        <h4 data-i18n="footer.connect">
+          Connect
+        </h4>
 
-        <a href="mailto:emeriona.global@gmail.com">
+        <a
+          href="mailto:emeriona.global@gmail.com"
+          data-i18n="contact.email.label"
+        >
           Email
         </a>
 
         <a
           href="https://wa.me/967737445680"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
+          data-i18n="contact.whatsapp.label"
         >
           WhatsApp
         </a>
 
-        <a href="#contact">
+        <a
+          href="#contact"
+          data-i18n="nav.contact"
+        >
           Contact
         </a>
 
@@ -715,14 +1695,19 @@
 
     </div>
 
+
     <div class="container footer-bottom">
 
       <span>
-        © <span id="year">2026</span>
-        EMERIONA Global. All rights reserved.
+        ©
+        <span id="year">2026</span>
+        EMERIONA GLOBAL.
+        <span data-i18n="footer.rights">
+          All rights reserved.
+        </span>
       </span>
 
-      <span>
+      <span data-i18n="footer.values">
         Empowerment • Elevation • Impact
       </span>
 
@@ -731,6 +1716,7 @@
   </footer>
 
 
+  <!-- JavaScript -->
   <script src="script.js"></script>
 
 </body>

@@ -236,12 +236,12 @@ hero {
   height: 100%;
   display: block;
 }
-
 .hero-media img {
   object-fit: cover;
   object-position: center center;
   opacity: 0.68;
   filter: saturate(0.9) contrast(1.04);
+
 }
 
 .hero-overlay {

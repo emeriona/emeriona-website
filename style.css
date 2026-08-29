@@ -13,10 +13,6 @@
   --max: 1180px;
 }
 
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -73,10 +69,6 @@ iframe {
   max-width: 100%;
 }
 
-img {
-  height: auto;
-}
-
 .container {
   width: min(calc(100% - 40px), var(--max));
   margin: 0 auto;
@@ -91,53 +83,46 @@ img {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(7, 17, 31, 0.96);
+  background: rgba(7, 17, 31, 0.97);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--line);
 }
 
 .nav-container {
-  min-height: 76px;
-  display: flex;
+  min-height: 78px;
+  display: grid;
+  grid-template-columns: auto 1fr minmax(250px, 340px) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 30px;
+  gap: 24px;
 }
 
-/*
-  The current index.html uses .brand-name rather than
-  the previous .logo class.
-*/
 .brand-name {
   display: inline-flex;
   align-items: center;
   color: var(--white);
   font-weight: 850;
   letter-spacing: 0.075em;
-  font-size: 1.08rem;
+  font-size: 1.05rem;
   white-space: nowrap;
-  transition: color 0.25s ease;
-}
-
-.brand-name:hover {
-  color: var(--gold2);
 }
 
 .main-nav {
+  min-width: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 22px;
+  justify-content: center;
+  gap: 17px;
 }
 
 .main-nav a {
   position: relative;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.73rem;
   font-weight: 650;
-  letter-spacing: 0.035em;
+  letter-spacing: 0.025em;
   padding: 8px 0;
+  white-space: nowrap;
   transition:
     color 0.25s ease,
     opacity 0.25s ease;
@@ -165,6 +150,28 @@ img {
   transform: scaleX(1);
 }
 
+.header-intro {
+  min-width: 0;
+  padding-left: 20px;
+  border-left: 1px solid rgba(215, 181, 109, 0.28);
+  color: #c8d2de;
+  font-size: 0.68rem;
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+}
+
+.header-intro span {
+  display: block;
+  max-width: 330px;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .language-toggle {
   min-width: 44px;
   min-height: 36px;
@@ -176,7 +183,7 @@ img {
   cursor: pointer;
   font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   transition:
     background 0.25s ease,
     border-color 0.25s ease,
@@ -206,7 +213,6 @@ img {
 
 /* =========================================================
    HERO
-   FINAL HERO SYSTEM
 ========================================================= */
 
 .hero {
@@ -231,10 +237,6 @@ img {
   color: var(--white);
 }
 
-/* ---------------------------------------------------------
-   HERO IMAGE
---------------------------------------------------------- */
-
 .hero-media {
   position: absolute;
   inset: 0;
@@ -242,67 +244,40 @@ img {
   overflow: hidden;
 }
 
-.hero-media picture {
-  display: block;
+.hero-media picture,
+.hero-media img {
   width: 100%;
   height: 100%;
+  display: block;
 }
 
 .hero-media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-width: none;
   object-fit: cover;
-
-  /*
-    Keep the actual cover visible.
-    The overlay below handles text contrast.
-  */
   object-position: center center;
   opacity: 0.78;
-  filter:
-    saturate(0.94)
-    contrast(1.05)
-    brightness(0.98);
-
-  transform: scale(1.015);
+  filter: saturate(1) contrast(1.05) brightness(0.96);
 }
-
-/* ---------------------------------------------------------
-   HERO OVERLAY
---------------------------------------------------------- */
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-
-  /*
-    Darker on the text side.
-    Lighter toward the image side.
-    This preserves the cover instead of hiding it.
-  */
   background:
     linear-gradient(
       90deg,
-      rgba(7, 17, 31, 0.91) 0%,
-      rgba(7, 17, 31, 0.76) 30%,
-      rgba(7, 17, 31, 0.50) 57%,
+      rgba(7, 17, 31, 0.89) 0%,
+      rgba(7, 17, 31, 0.69) 38%,
+      rgba(7, 17, 31, 0.32) 72%,
       rgba(7, 17, 31, 0.20) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(7, 17, 31, 0.24) 0%,
-      rgba(7, 17, 31, 0.10) 42%,
-      rgba(7, 17, 31, 0.48) 100%
+      rgba(7, 17, 31, 0.16) 0%,
+      rgba(7, 17, 31, 0.20) 55%,
+      rgba(7, 17, 31, 0.46) 100%
     );
 }
-
-/* ---------------------------------------------------------
-   DECORATIVE ORBITS
---------------------------------------------------------- */
 
 .hero-orbit {
   position: absolute;
@@ -326,85 +301,45 @@ img {
   bottom: -210px;
 }
 
-/* ---------------------------------------------------------
-   HERO CONTENT
---------------------------------------------------------- */
-
-.hero > .container {
-  width: min(calc(100% - 40px), var(--max));
-}
-
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 920px;
+  max-width: 900px;
   padding: 112px 0 118px;
 }
 
-/* Small institutional kicker */
-
-.hero-kicker {
-  margin-bottom: 13px;
-  color: var(--gold2);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-}
-
-/*
-  Main EMERIONA GLOBAL brand line.
-  This is intentionally larger than the kicker
-  and visually establishes the company name.
-*/
-
 .hero-brand {
-  margin-bottom: 15px;
-  color: var(--gold2);
-  font-size: clamp(1.7rem, 3.2vw, 2.65rem);
-  line-height: 1.08;
+  display: block;
+  margin-bottom: 7px;
+  color: #ffffff;
+  font-size: clamp(2rem, 4.2vw, 3.65rem);
   font-weight: 850;
-  letter-spacing: 0.055em;
-  text-transform: uppercase;
-  text-shadow:
-    0 2px 18px rgba(0, 0, 0, 0.35),
-    0 0 26px rgba(215, 181, 109, 0.08);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-shadow: 0 3px 25px rgba(0, 0, 0, 0.34);
 }
-
-/*
-  Institutional descriptor:
-  A Global Ecosystem for Empowerment, Innovation & Impact
-*/
 
 .hero-tagline {
-  max-width: 760px;
-  margin-bottom: 30px;
-  color: #eef2f6;
-  font-size: clamp(0.98rem, 1.65vw, 1.16rem);
-  line-height: 1.55;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.34);
+  max-width: 720px;
+  margin-bottom: 31px;
+  color: var(--gold2);
+  font-size: clamp(0.96rem, 1.7vw, 1.28rem);
+  font-weight: 650;
+  line-height: 1.5;
+  letter-spacing: 0.015em;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.42);
 }
 
-/* ---------------------------------------------------------
-   HERO MAIN TITLE
---------------------------------------------------------- */
-
 .hero h1 {
-  max-width: 920px;
+  max-width: 850px;
   display: flex;
   flex-direction: column;
-  gap: 0;
-
-  font-size: clamp(3rem, 6.5vw, 6.15rem);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
-  font-weight: 850;
-
-  text-shadow:
-    0 3px 24px rgba(0, 0, 0, 0.28),
-    0 0 40px rgba(0, 0, 0, 0.12);
+  gap: 3px;
+  font-size: clamp(2.15rem, 5.4vw, 4.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  font-weight: 820;
+  text-shadow: 0 3px 25px rgba(0, 0, 0, 0.34);
 }
 
 .hero-title-line {
@@ -419,43 +354,11 @@ img {
   color: var(--gold2);
 }
 
-/*
-  Fallback for any existing span-based hero title.
-*/
-.hero h1 span {
-  display: block;
-}
-
-.hero h1 span.hero-title-white {
-  color: #ffffff;
-}
-
-.hero h1 span.hero-title-gold {
-  color: var(--gold2);
-}
-
-/* ---------------------------------------------------------
-   HERO DESCRIPTION
---------------------------------------------------------- */
-
-.hero-description {
-  max-width: 710px;
-  margin: 30px 0 36px;
-  color: #d9e1ea;
-  font-size: clamp(0.98rem, 1.55vw, 1.14rem);
-  line-height: 1.8;
-  font-weight: 400;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.34);
-}
-
-/* ---------------------------------------------------------
-   HERO ACTIONS
---------------------------------------------------------- */
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  margin-top: 35px;
 }
 
 .btn {
@@ -472,8 +375,7 @@ img {
   transition:
     transform 0.25s ease,
     background 0.25s ease,
-    border-color 0.25s ease,
-    color 0.25s ease;
+    border-color 0.25s ease;
 }
 
 .btn:hover {
@@ -492,12 +394,12 @@ img {
 .btn-secondary {
   border-color: rgba(255, 255, 255, 0.32);
   color: var(--white);
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.50);
 }
 
 
@@ -751,8 +653,7 @@ img {
   letter-spacing: 0.15em;
 }
 
-.method-step h3,
-.method-step strong {
+.method-step h3 {
   font-size: 1.05rem;
 }
 
@@ -1025,13 +926,39 @@ textarea {
 
 
 /* =========================================================
+   LARGE TABLET / LAPTOP
+========================================================= */
+
+@media (max-width: 1180px) {
+
+  .nav-container {
+    grid-template-columns: auto 1fr auto;
+    gap: 20px;
+  }
+
+  .header-intro {
+    display: none;
+  }
+
+  .main-nav {
+    gap: 14px;
+  }
+
+}
+
+
+/* =========================================================
    TABLET
 ========================================================= */
 
 @media (max-width: 1000px) {
 
   .main-nav {
-    gap: 14px;
+    gap: 12px;
+  }
+
+  .main-nav a {
+    font-size: 0.70rem;
   }
 
   .method-grid {
@@ -1052,17 +979,10 @@ textarea {
     padding: 95px 0;
   }
 
-  .hero-brand {
-    font-size: clamp(1.55rem, 3.8vw, 2.2rem);
-  }
-
-  .hero h1 {
-    font-size: clamp(2.9rem, 7vw, 5.4rem);
-  }
-
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
+
 }
 
 
@@ -1078,17 +998,15 @@ textarea {
 
   .nav-container {
     min-height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   .brand-name {
-    font-size: 0.95rem;
-    letter-spacing: 0.055em;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 0.92rem;
+    letter-spacing: 0.045em;
   }
 
   .nav-actions {
@@ -1096,6 +1014,12 @@ textarea {
     align-items: center;
     gap: 8px;
     margin-left: auto;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .main-nav {
@@ -1118,18 +1042,19 @@ textarea {
 
   .main-nav a {
     padding: 11px 8px;
+    font-size: 0.82rem;
   }
 
   .main-nav a::after {
     display: none;
   }
 
-  /* -------------------------------------------------------
-     MOBILE HERO
-  ------------------------------------------------------- */
+  .header-intro {
+    display: none;
+  }
 
   .hero {
-    min-height: 700px;
+    min-height: 680px;
   }
 
   .hero-media img {
@@ -1141,84 +1066,49 @@ textarea {
     background:
       linear-gradient(
         90deg,
-        rgba(7, 17, 31, 0.94) 0%,
-        rgba(7, 17, 31, 0.78) 48%,
-        rgba(7, 17, 31, 0.48) 100%
+        rgba(7, 17, 31, 0.91) 0%,
+        rgba(7, 17, 31, 0.70) 58%,
+        rgba(7, 17, 31, 0.40) 100%
       ),
       linear-gradient(
         180deg,
-        rgba(7, 17, 31, 0.26) 0%,
-        rgba(7, 17, 31, 0.16) 40%,
-        rgba(7, 17, 31, 0.58) 100%
+        rgba(7, 17, 31, 0.20),
+        rgba(7, 17, 31, 0.50)
       );
   }
 
   .hero-content {
     padding: 78px 0 82px;
-    max-width: 100%;
-  }
-
-  .hero-kicker {
-    margin-bottom: 10px;
-    font-size: 0.64rem;
-    letter-spacing: 0.20em;
   }
 
   .hero-brand {
-    max-width: 100%;
-    margin-bottom: 12px;
-    font-size: clamp(1.45rem, 7.5vw, 2.15rem);
-    line-height: 1.08;
-    letter-spacing: 0.035em;
+    font-size: clamp(1.85rem, 9vw, 2.75rem);
+    margin-bottom: 8px;
   }
 
   .hero-tagline {
     max-width: 100%;
-    margin-bottom: 25px;
-    font-size: 0.92rem;
+    margin-bottom: 26px;
+    font-size: 0.98rem;
     line-height: 1.55;
   }
 
   .hero h1 {
     max-width: 100%;
-    font-size: clamp(2.55rem, 12.5vw, 4.45rem);
-    line-height: 0.99;
-    letter-spacing: -0.055em;
-  }
-
-  .hero-description {
-    max-width: 100%;
-    margin: 26px 0 31px;
-    font-size: 0.96rem;
-    line-height: 1.75;
+    font-size: clamp(2rem, 10.5vw, 3.6rem);
+    line-height: 1.08;
+    gap: 2px;
   }
 
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
+    margin-top: 30px;
   }
 
   .btn {
     width: 100%;
   }
-
-  .orbit-one {
-    width: 420px;
-    height: 420px;
-    right: -230px;
-    top: -80px;
-  }
-
-  .orbit-two {
-    width: 280px;
-    height: 280px;
-    right: -90px;
-    bottom: -150px;
-  }
-
-  /* -------------------------------------------------------
-     GENERAL MOBILE
-  ------------------------------------------------------- */
 
   .section,
   .values {
@@ -1268,47 +1158,82 @@ textarea {
   .footer-bottom {
     flex-direction: column;
   }
+
+  .orbit-one {
+    width: 420px;
+    height: 420px;
+    right: -230px;
+    top: -80px;
+  }
+
+  .orbit-two {
+    width: 280px;
+    height: 280px;
+    right: -90px;
+    bottom: -150px;
+  }
+
 }
 
 
 /* =========================================================
-   VERY SMALL DEVICES
+   SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 420px) {
 
-  .container {
-    width: min(calc(100% - 24px), var(--max));
+  .brand-name {
+    font-size: 0.84rem;
+  }
+
+  .language-toggle {
+    min-width: 40px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   .hero {
-    min-height: 680px;
+    min-height: 650px;
   }
 
   .hero-content {
-    padding: 70px 0 75px;
+    padding: 68px 0 72px;
   }
 
   .hero-brand {
-    font-size: 1.38rem;
+    font-size: 1.8rem;
   }
 
   .hero-tagline {
-    font-size: 0.88rem;
+    font-size: 0.91rem;
   }
 
   .hero h1 {
-    font-size: clamp(2.35rem, 12.2vw, 3.65rem);
+    font-size: clamp(1.9rem, 10vw, 3rem);
   }
 
-  .hero-description {
-    font-size: 0.92rem;
-  }
+}
 
-  .section,
-  .values {
-    padding: 68px 0;
-  }
+
+/* =========================================================
+   ARABIC DIRECTION SUPPORT
+========================================================= */
+
+body.lang-ar .header-intro {
+  padding-left: 0;
+  padding-right: 20px;
+  border-left: 0;
+  border-right: 1px solid rgba(215, 181, 109, 0.28);
+}
+
+body.lang-ar .hero-content,
+body.lang-ar .section-heading,
+body.lang-ar .content-block {
+  text-align: right;
+}
+
+body.lang-ar .hero-actions {
+  justify-content: flex-start;
 }
 
 
@@ -1333,10 +1258,6 @@ textarea {
 
   .reveal {
     opacity: 1;
-    transform: none;
-  }
-
-  .hero-media img {
     transform: none;
   }
 }

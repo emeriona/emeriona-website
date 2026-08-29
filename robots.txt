@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://emeriona.github.io/emeriona-website/sitemap.xml

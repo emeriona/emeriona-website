@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://emeriona.github.io/emeriona-website/sitemap.xml
-Sitemap: https://emeriona-website.emeriona-global.workers.dev/sitemap.xml
+Sitemap: https://emeriona-website.emerionaglobal.workers.dev/sitemap.xml
